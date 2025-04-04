@@ -2,13 +2,14 @@
 This package consists a tilt-rotor UAV simulation in the ROS Gazebo environment, integrated with the PX4 controller. It is developed in Ubuntu 20.04, ROS Noetic and Gazebo 11.
 # Guide
 ## Setup of the environment
-Install ROS 1, PX4 and MAVROS following the ROS 1 with MAVROS Installation Guide (https://docs.px4.io/main/en/ros/mavros_installation.html).
+Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html).
 
-Download the models folder and copy its components into Gazebo's model directory /Tools/simulation/gazebo-classic/sitl_gazebo-classic/models. Download the models_plugin folder and locate it in the src folder located in the catkin_ws folder.
+Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-Modify launch files px4.launch mavros_posix_sitl.launch, changing vehicle name from iris to iris_tiltrotor.
+Modify launch files `px4.launch` `mavros_posix_sitl.launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 
-Ensure the empty.world file includes the following physics parameters:
+Ensure the `empty.world` file includes the following physics parameters:
+
 ```plaintext
 <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
@@ -29,12 +30,29 @@ Ensure the empty.world file includes the following physics parameters:
       </ode>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
     </physics>
-
-Install QGroundControl and, when running simulation, launch it and set the following parameters: EKF2_EV_CTRL = 15
+```
+Install QGroundControl and, when running simulation, launch it and set the following parameters: 
+```plaintext
+EKF2_EV_CTRL = 15
 EKF2_HGT_REF = VISION
-
-Download the tiltrotor_drone_PID or tiltrotor_drone_LQR folders, which are the controllers developed for the tilt-rotor UAV respectively using PID and PID+LQR. Then rename the selected folder as tiltrotor_drone and locate it in the src folder located in the catkin_ws folder.
+```
+Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID and PID+LQR. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
 ## Start of the simulation
-Build the environment (cd catkin_ws, catkin build).
-
-Open three terminals. Use the first one to launch the flight code to control the UAV (cd catkin_ws, roslaunch tiltrotor_drone flight_controller.launch), the second one to launch PX4, ROS and Gazebo (cd PX4-Autopilot, roslaunch launch/mavros_posix_sitl.launch) and the last one to dynamically modify the setpoints of the UAV (rosrun rqt_reconfigure rqt_reconfigure).
+Build the environment:
+```
+cd catkin_ws
+catkin build
+```
+Open three terminals. Use the first one to launch the flight code to control the UAV:
+```
+cd catkin_ws
+roslaunch tiltrotor_drone flight_controller.launch
+the second one to launch PX4, ROS and Gazebo
+```
+cd PX4-Autopilot
+roslaunch launch/mavros_posix_sitl.launch
+```
+and the last one to dynamically modify the setpoints of the UAV
+```
+rosrun rqt_reconfigure rqt_reconfigure)
+```
