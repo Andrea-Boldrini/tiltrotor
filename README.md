@@ -47,12 +47,13 @@ Open three terminals. Use the first one to launch the flight code to control the
 ```
 cd catkin_ws
 roslaunch tiltrotor_drone flight_controller.launch
-the second one to launch PX4, ROS and Gazebo
+```
+the second one to launch PX4, ROS and Gazebo:
 ```
 cd PX4-Autopilot
 roslaunch launch/mavros_posix_sitl.launch
 ```
-and the last one to dynamically modify the setpoints of the UAV
+and the last one to dynamically modify the setpoints of the UAV:
 ```
 rosrun rqt_reconfigure rqt_reconfigure)
 ```
