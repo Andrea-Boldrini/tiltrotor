@@ -6,9 +6,9 @@ Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guid
 
 Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-Modify launch files `px4.launch` `mavros_posix_sitl.launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
+Modify launch files `px4.launch` `mavros_posix_sitl.launch` in directory ```launch```, changing vehicle name from `iris` to `iris_tiltrotor`.
 
-Ensure the `empty.world` file includes the following physics parameters:
+Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
 
 ```plaintext
 <physics name='default_physics' default='0' type='ode'>
