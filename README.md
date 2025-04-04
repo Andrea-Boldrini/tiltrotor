@@ -2,9 +2,32 @@
 This package consists a tilt-rotor UAV simulation in the ROS Gazebo environment, integrated with the PX4 controller. It is developed in Ubuntu 20.04, ROS Noetic and Gazebo 11.
 # Guide
 ## Setup of the environment
-Install ROS 1 and MAVROS following the ROS 1 with MAVROS Installation Guide (https://docs.px4.io/main/en/ros/mavros_installation.html).
+Install ROS 1, PX4 and MAVROS following the ROS 1 with MAVROS Installation Guide (https://docs.px4.io/main/en/ros/mavros_installation.html).
 
-Download the PX4-Autopilot uploaded in this repository, which is already modified to handle tilt-rotor UAV simulations.
+Download the models folder and copy its components into Gazebo's model directory /Tools/simulation/gazebo-classic/sitl_gazebo-classic/models. Download the models_plugin folder and locate it in the src folder located in the catkin_ws folder.
+
+Modify launch files px4.launch mavros_posix_sitl.launch, changing vehicle name from iris to iris_tiltrotor.
+
+Ensure the empty.world file includes the following physics parameters:
+<physics name='default_physics' default='0' type='ode'>
+      <gravity>0 0 -9.8066</gravity>
+      <max_contacts>250</max_contacts>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>40</iters>
+          <sor>1.3</sor>
+          <use_dynamic_moi_rescaling>0</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
+    </physics>
 
 Download the tiltrotor_drone_PID or tiltrotor_drone_LQR folders, which are the controllers developed for the tilt-rotor UAV respectively using PID and PID+LQR. Then rename the selected folder as tiltrotor_drone and locate it in the src folder located in the catkin_ws folder.
 ## Start of the simulation
