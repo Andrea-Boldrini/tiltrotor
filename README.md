@@ -9,4 +9,4 @@ Download the PX4-Autopilot uploaded in this repository, which is already modifie
 Download the tiltrotor_drone_PID or tiltrotor_drone_LQR folders, which are the controllers developed for the tilt-rotor UAV respectively using PID and PID+LQR. Then rename the selected folder as tiltrotor_drone and locate it in the src folder located in the catkin_ws folder.
 ## Start of the simulation
 Build the environment (cd catkin_ws, catkin build).
-Open three terminals. Use the first one to launch the flight code to control the UAV (cd catkin_ws, roslaunch tiltrotor_drone flight_controller.launch), the second one to launch PX4, ROS and Gazebo (cd PX4-Autopilot, roslaunch launch/mavros_posix_sitl.launch) and the last one to dynamically modifty the setpoints of the UAV (rosrun rqt_reconfigure rqt_reconfigure).
+Open three terminals. Use the first one to launch the flight code to control the UAV (cd catkin_ws, roslaunch tiltrotor_drone flight_controller.launch), the second one to launch PX4, ROS and Gazebo (cd PX4-Autopilot, roslaunch launch/mavros_posix_sitl.launch) and the last one to dynamically modify the setpoints of the UAV (rosrun rqt_reconfigure rqt_reconfigure).
