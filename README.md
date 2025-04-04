@@ -27,7 +27,7 @@ Ensure the empty.world file includes the following physics parameters:
         </constraints>
       </ode>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
-    </physics>
+    </physics>'''
 
 Install QGroundControl and, when running simulation, launch it and set the following parameters: EKF2_EV_CTRL = 15
 EKF2_HGT_REF = VISION
