@@ -9,7 +9,7 @@ Download the models folder and copy its components into Gazebo's model directory
 Modify launch files px4.launch mavros_posix_sitl.launch, changing vehicle name from iris to iris_tiltrotor.
 
 Ensure the empty.world file includes the following physics parameters:
-<!--
+```plaintext
 <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
       <max_contacts>250</max_contacts>
@@ -28,8 +28,8 @@ Ensure the empty.world file includes the following physics parameters:
         </constraints>
       </ode>
       <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
-    </physics>'''
--->
+    </physics>
+
 Install QGroundControl and, when running simulation, launch it and set the following parameters: EKF2_EV_CTRL = 15
 EKF2_HGT_REF = VISION
 
