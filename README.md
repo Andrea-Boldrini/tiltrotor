@@ -55,5 +55,5 @@ roslaunch launch/mavros_posix_sitl.launch
 ```
 and the last one to dynamically modify the setpoints of the UAV:
 ```
-rosrun rqt_reconfigure rqt_reconfigure)
+rosrun rqt_reconfigure rqt_reconfigure
 ```
