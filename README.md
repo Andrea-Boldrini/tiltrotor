@@ -1,7 +1,7 @@
 # Simulation of a Tilt-Rotor UAV
 This package consists of a tilt-rotor UAV simulation in the ROS Gazebo environment, integrated with the PX4 controller. It is developed in Ubuntu 20.04, ROS Noetic and Gazebo 11.
 
-Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contains Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advance fashion.
+Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contain Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advance fashion.
 # Guide
 ## Setup of the environment
 Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html).
