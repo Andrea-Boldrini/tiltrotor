@@ -360,11 +360,17 @@ void FlightController::sendCmds()
     _e.vy = _u.y - _current.vy_local;  
     _i_e.vy += _e.vy * dt1;
     _d_e.vy = (_e.vy - _previous_e.vy) / dt1;
+
+    _previous_e.vz = _e.vz;
+    _e.vz = _u.z - _current.vz;  
+    _i_e.vz += _e.vz * dt1;
+    _d_e.vz = (_e.vz - _previous_e.vz) / dt1;
     
     _t2 = std::chrono::high_resolution_clock::now();
      
     _u.vy = -(_kp.vy * _e.vy + _kd.vy * _d_e.vy + _ki.vy * _i_e.vy);
-    
+    _u.vz = _kp.vz * _e.vz + _kd.vz * _d_e.vz + _ki.vz * _i_e.vz;
+  
     //ROS_WARN("sp roll: %f", _u.vy);
     //ROS_WARN("current roll: %f", _current.roll_deg);
     
@@ -432,7 +438,8 @@ void FlightController::sendCmds()
     _f.x = LQR[0] - _m*9.81*sin_pitch;
     _f.z = LQR[1] + _m*9.81*cos_pitch;
     _tilt = -atan(_f.x / _f.z);
-    _T = (sqrt(pow(_f.x, 2) + pow(_f.z, 2)))/(2*9.81*_m*0.82);
+    //_T = (sqrt(pow(_f.x, 2) + pow(_f.z, 2)))/(2*9.81*_m*0.82);
+    _T = 0.6 + _u.vz/2/9.81/_m;
     
     _setpoint_raw_msg.type_mask = 128;
     _setpoint_raw_msg.body_rate.x = _u.roll;
