@@ -59,7 +59,7 @@ and the last one to dynamically modify the setpoints of the UAV:
 ```
 rosrun rqt_reconfigure rqt_reconfigure
 ```
-# Guide for Matlab/Simulink Simulation
+# Guide for Matlab/Simulink simulation
 `position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
 In both the folders it is possible to choose between three different Simulink modellings, named `model_3`, `model_4` and `model_5`, related to three different control schemes. 
