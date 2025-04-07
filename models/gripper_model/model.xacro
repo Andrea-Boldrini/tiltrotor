@@ -1,0 +1,933 @@
+<?xml version="1.0"?>
+<robot name="gripper_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="scale_factor" value="0.3" />
+    <link name="base">
+        <pose>${-0.15 * scale_factor} ${0.0 * scale_factor} ${0.05 * scale_factor} 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.01 * (scale_factor ** 5)}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.01 * (scale_factor ** 5)}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.01 * (scale_factor ** 5)}</izz>
+          </inertia>
+          <mass>${1.0 * (scale_factor ** 3)}</mass>
+        </inertial>
+        <collision name="collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.45 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.45 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="riser">
+        <pose>${-0.15 * scale_factor} ${0.0 * scale_factor} ${0.15 * scale_factor} 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.01 * (scale_factor ** 5)}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.01 * (scale_factor ** 5)}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.01 * (scale_factor ** 5)}</izz>
+          </inertia>
+          <mass>${1.0 * (scale_factor ** 3)}</mass>
+        </inertial>
+        <collision name="collisiontop"> 
+        <pose>0 0 ${0.0275 * scale_factor} 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.045 * scale_factor} ${0.06 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.045 * scale_factor} ${0.06 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionleft">
+        <pose>0 ${0.065 * scale_factor} 0 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.07 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionright">
+        <pose>0 ${-0.065 * scale_factor} 0 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.07 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionmiddle">
+        <pose>0 0 0 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.01 * scale_factor} ${0.04 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.45 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="left_finger_link">
+        <pose relative_to='riser'>${0.2 * scale_factor} ${0.125 * scale_factor} 0 0 0 -0.52359</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collisiontop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.09 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <visual name="visualtop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.09 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+    </link>
+    <link name="left_finger">
+        <pose relative_to='left_finger_link'>${0.08 * scale_factor} ${0.25 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+            <inertia>
+                <ixx>${0.0001 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.0001 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.0001 * scale_factor**5}</izz>
+            </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collisionleft">
+            <pose>${0.0375 * scale_factor} 0 0 1.57 0 0</pose>
+            <geometry>
+                <box>
+                    <size>${0.025 * scale_factor} ${0.1 * scale_factor} ${0.3 * scale_factor}</size>
+                </box>
+            </geometry>
+        </collision>
+        <collision name="collisionright">
+            <pose>${-0.0375 * scale_factor} 0 0 1.57 0 0</pose>
+            <geometry>
+                <box>
+                    <size>${0.025 * scale_factor} ${0.1 * scale_factor} ${0.3 * scale_factor}</size>
+                </box>
+            </geometry>
+        </collision>
+        <collision name="collisiontop">
+            <pose>0 0 ${0.0275 * scale_factor} 1.57 0 0</pose>
+            <geometry>
+                <box>
+                    <size>${0.05 * scale_factor} ${0.045 * scale_factor} ${0.3 * scale_factor}</size>
+                </box>
+            </geometry>
+        </collision>
+        <collision name="collisionbottom">
+            <pose>0 0 ${-0.0275 * scale_factor} 1.57 0 0</pose>
+            <geometry>
+                <box>
+                    <size>${0.05 * scale_factor} ${0.045 * scale_factor} ${0.3 * scale_factor}</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name="visual">
+            <pose>0 0 0 1.57 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>${scale_factor} ${scale_factor} ${scale_factor}</scale>
+                    <uri>model://gripper_v2/meshes/gripper_finger.stl</uri>
+                </mesh>
+            </geometry>
+        </visual>
+    </link>
+    <link name="soft_left_finger_pad">
+    <pose relative_to='left_finger'>${0.06 * scale_factor} 0 0 1.5708 0 1.5708</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <inertia>
+                <ixx>${0.001 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.001 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.001 * scale_factor**5}</izz>
+            </inertia>
+            <mass>${0.1 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.3 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <surface>
+            <contact>
+            <ode>
+                <soft_cfm>0.5</soft_cfm>  
+                <soft_erp>0.2</soft_erp>  
+                <kp>1900</kp>          
+                <kd>0.5</kd>                 
+                <max_vel>0.2</max_vel>     
+                <min_depth>0.01</min_depth> 
+            </ode>
+            </contact>
+            <friction>
+            <ode>
+                <mu>5.0</mu>   
+                <mu2>5.0</mu2>
+            </ode>
+            </friction>
+        </surface>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.3 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <material>
+            <script>
+                <name>Gazebo/Gray</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            </material>
+        </visual>
+    </link>
+    <link name="left_finger_tip_link">
+        <pose relative_to='left_finger'>${-0.03 * scale_factor} ${0.21 * scale_factor} 0 0 0 ${-0.645772}</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>  
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>${0.0001 * scale_factor**5}</iyy>  
+            <iyz>0</iyz>
+            <izz>${0.0001 * scale_factor**5}</izz> 
+          </inertia>
+          <mass>${0.01 * scale_factor**3}</mass>  
+        </inertial>
+        <collision name="collisiontop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.05 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <visual name="visualtop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.05 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0</pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+    </link>
+    <link name="left_finger_tip_spacer">
+        <pose relative_to='left_finger_tip_link'>${0.005 * scale_factor} ${0.085 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.05 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.05 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="left_finger_tip">
+        <pose relative_to='left_finger_tip_link'>${0.03 * scale_factor} ${0.21 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.1 * scale_factor} ${0.2 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.1 * scale_factor} ${0.2 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="soft_left_fingertip_pad">
+    <pose relative_to='left_finger_tip'>${0.06 * scale_factor} 0 0 1.5708 0 1.5708</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <inertia>
+                <ixx>${0.001 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.001 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.001 * scale_factor**5}</izz>
+            </inertia>
+            <mass>${0.1 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <surface>
+            <contact>
+            <ode>
+                <soft_cfm>0.5</soft_cfm>  
+                <soft_erp>0.2</soft_erp>   
+                <kp>1900</kp>          
+                <kd>0.5</kd>                 
+                <max_vel>0.2</max_vel>     
+                <min_depth>0.01</min_depth> 
+            </ode>
+            </contact>
+            <friction>
+            <ode>
+                <mu>5.0</mu>   
+                <mu2>5.0</mu2>
+            </ode>
+            </friction>
+        </surface>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <material>
+            <script>
+                <name>Gazebo/Gray</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            </material>
+        </visual>
+    </link>
+    <link name="right_finger_link">
+        <pose relative_to='riser'>${0.2 * scale_factor} ${-0.125 * scale_factor} 0 0 0 0.52359</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collisiontop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.09 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <visual name="visualtop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.09 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.1 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+    </link>
+    <link name="right_finger">
+        <pose relative_to='right_finger_link'>${0.08 * scale_factor} ${-0.25 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collisionleft">
+        <pose>${0.0375 * scale_factor} 0 0 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.025 * scale_factor} ${0.1 * scale_factor} ${0.3 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionright">
+        <pose>${-0.0375 * scale_factor} 0 0 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.025 * scale_factor} ${0.1 * scale_factor} ${0.3 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisiontop">
+        <pose>0 0 ${0.0275 * scale_factor} 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.045 * scale_factor} ${0.3 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 1.57 0 0</pose>
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.045 * scale_factor} ${0.3 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <pose>0 0 0 1.57 0 0</pose>
+        <geometry>
+            <mesh>
+              <scale>${scale_factor} ${scale_factor} ${scale_factor}</scale>
+              <uri>model://gripper_v2/meshes/gripper_finger.stl</uri>
+            </mesh>
+        </geometry>
+        </visual>
+    </link>
+    <link name="soft_right_finger_pad">
+    <pose relative_to='right_finger'>${0.06 * scale_factor} 0 0 1.5708 0 1.5708</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <inertia>
+                <ixx>${0.001 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.001 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.001 * scale_factor**5}</izz>
+            </inertia>
+            <mass>${0.1 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.3 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <surface>
+            <contact>
+            <ode>
+                <soft_cfm>0.5</soft_cfm>  
+                <soft_erp>0.2</soft_erp>   
+                <kp>1900</kp>          
+                <kd>0.5</kd>                 
+                <max_vel>0.2</max_vel>     
+                <min_depth>0.01</min_depth> 
+            </ode>
+            </contact>
+            <friction>
+            <ode>
+                <mu>5.0</mu>   
+                <mu2>5.0</mu2>
+            </ode>
+            </friction>
+        </surface>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.3 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <material>
+            <script>
+                <name>Gazebo/Gray</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            </material>
+        </visual>
+    </link>
+    <link name="right_finger_tip_link">
+        <pose relative_to='right_finger'>${-0.03 * scale_factor} ${-0.21 * scale_factor} 0 0 0 0.645772</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collisiontop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.05 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <collision name="collisionbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </collision>
+        <visual name="visualtop">
+        <pose>0 0 ${0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualmiddle">
+        <geometry>
+            <cylinder>
+                <radius>${0.05 * scale_factor}</radius>
+                <length>${0.01 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+        <visual name="visualbottom">
+        <pose>0 0 ${-0.0275 * scale_factor} 0 0 0 </pose>
+        <geometry>
+            <cylinder>
+                <radius>${0.06 * scale_factor}</radius>
+                <length>${0.045 * scale_factor}</length>
+            </cylinder>
+        </geometry>
+        </visual>
+    </link>
+    <link name="right_finger_tip_spacer">
+        <pose relative_to='right_finger_tip_link'>${0.005 * scale_factor} ${-0.085 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.05 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.05 * scale_factor} ${0.05 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="right_finger_tip">
+        <pose relative_to='right_finger_tip_link'>${0.03 * scale_factor} ${-0.21 * scale_factor} 0 0 0 0</pose>
+        <inertial>
+          <inertia>
+              <ixx>${0.0001 * scale_factor**5}</ixx>
+              <ixy>0</ixy>
+              <ixz>0</ixz>
+              <iyy>${0.0001 * scale_factor**5}</iyy>
+              <iyz>0</iyz>
+              <izz>${0.0001 * scale_factor**5}</izz>
+          </inertia>
+            <mass>${0.01 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+          <geometry>
+              <box>
+                  <size>${0.1 * scale_factor} ${0.2 * scale_factor} ${0.1 * scale_factor}</size>
+              </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+        <geometry>
+          <box>
+                <size>${0.1 * scale_factor} ${0.2 * scale_factor} ${0.1 * scale_factor}</size>
+            </box>
+        </geometry>
+        </visual>
+    </link>
+    <link name="soft_right_fingertip_pad">
+    <pose relative_to='right_finger_tip'>${0.06 * scale_factor} 0 0 1.5708 0 1.5708</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <inertia>
+                <ixx>${0.001 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.001 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.001 * scale_factor**5}</izz>
+            </inertia>
+            <mass>${0.1 * scale_factor**3}</mass>
+        </inertial>
+        <collision name="collision">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <surface>
+            <contact>
+            <ode>
+                <soft_cfm>0.5</soft_cfm>  
+                <soft_erp>0.2</soft_erp>   
+                <kp>1900</kp>          
+                <kd>0.5</kd>                 
+                <max_vel>0.2</max_vel>    
+                <min_depth>0.01</min_depth>
+            </ode>
+            </contact>
+            <friction>
+            <ode>
+                <mu>5.0</mu>   
+                <mu2>5.0</mu2>
+            </ode>
+            </friction>
+        </surface>
+        </collision>
+        <visual name="visual">
+        <geometry>
+            <box>
+                <size>${0.2 * scale_factor} ${0.1 * scale_factor} ${0.02 * scale_factor}</size>
+            </box>
+        </geometry>
+        <material>
+            <script>
+                <name>Gazebo/Gray</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+            </material>
+        </visual>
+    </link>
+    <static>false</static>
+
+    <!-- JOINTS -->
+    <joint name="base_riser" type="fixed">
+        <child>riser</child>
+        <parent>base</parent>
+    </joint>
+    <joint name="riser_left_finger_link" type="revolute">
+        <child>left_finger_link</child>
+        <parent>riser</parent>
+        <axis>
+        <limit>
+            <lower>-0.95</lower>
+            <upper>0.3</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.09</spring_stiffness> 
+          <damping>0.1</damping>
+        </dynamics>
+        </axis>
+        <sensor name="force_torque1" type="force_torque">
+            <update_rate>30</update_rate>
+            <force_torque>
+                <frame>child</frame>
+                <measure_direction>child_to_parent</measure_direction>
+            </force_torque>
+        </sensor>
+    </joint>
+    <joint name="fix_left_finger_link" type="fixed">
+        <child>left_finger</child>
+        <parent>left_finger_link</parent>
+    </joint>
+    <joint name="joint_left_finger_tip_link" type="revolute">
+        <child>left_finger_tip_link</child>
+        <parent>left_finger</parent>
+        <axis>
+        <limit>
+            <lower>-0.90</lower>
+            <upper>0.3</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.09</spring_stiffness> 
+          <damping>0.1</damping>
+        </dynamics>
+        </axis>
+        <sensor name="force_torque2" type="force_torque">
+            <update_rate>30</update_rate>
+            <force_torque>
+                <frame>child</frame>
+                <measure_direction>child_to_parent</measure_direction>
+            </force_torque>
+        </sensor>
+    </joint>
+    <joint name="fix_left_finger_tip_link" type="fixed">
+        <child>left_finger_tip</child>
+        <parent>left_finger_tip_link</parent>
+    </joint>
+    <joint name="fix_left_finger_tip_spacer" type="fixed">
+        <child>left_finger_tip</child>
+        <parent>left_finger_tip_spacer</parent>
+    </joint>
+    
+    <joint name="riser_right_finger_link" type="revolute">
+        <child>right_finger_link</child>
+        <parent>riser</parent>
+        <axis>
+        <limit>
+            <lower>-0.3</lower>
+            <upper>0.95</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.09</spring_stiffness> 
+          <damping>0.1</damping>
+        </dynamics>
+        </axis>
+        <sensor name="force_torque3" type="force_torque">
+            <update_rate>30</update_rate>
+            <force_torque>
+                <frame>child</frame>
+                <measure_direction>child_to_parent</measure_direction>
+            </force_torque>
+        </sensor>
+    </joint>
+    <joint name="fix_right_finger_link" type="fixed">
+        <child>right_finger</child>
+        <parent>right_finger_link</parent>
+    </joint>
+    <joint name="joint_right_finger_tip_link" type="revolute">
+        <child>right_finger_tip_link</child>
+        <parent>right_finger</parent>
+        <axis>
+        <limit>
+            <lower>-0.3</lower>
+            <upper>0.90</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0.09</spring_stiffness> 
+          <damping>0.1</damping>
+        </dynamics>
+        </axis>
+        <sensor name="force_torque4" type="force_torque">
+            <update_rate>30</update_rate>
+            <force_torque>
+                <frame>child</frame>
+                <measure_direction>child_to_parent</measure_direction>
+            </force_torque>
+        </sensor>
+    </joint>
+    <joint name="fix_right_finger_tip_link" type="fixed">
+        <child>right_finger_tip</child>
+        <parent>right_finger_tip_link</parent>
+    </joint>
+    <joint name="fix_right_finger_tip_spacer" type="fixed">
+        <child>right_finger_tip</child>
+        <parent>right_finger_tip_spacer</parent>
+    </joint>
+    <!-- pad joints -->
+    <joint name="soft_left_finger_pad_joint" type="fixed">
+        <child>soft_left_finger_pad</child>
+        <parent>left_finger</parent>
+    </joint>
+    <joint name="soft_left_fingertip_pad_joint" type="fixed">
+        <child>soft_left_fingertip_pad</child>
+        <parent>left_finger_tip</parent>
+    </joint>
+    <joint name="soft_right_finger_pad_joint" type="fixed">
+        <child>soft_right_finger_pad</child>
+        <parent>right_finger</parent>
+    </joint>
+    <joint name="soft_right_fingertip_pad_joint" type="fixed">
+        <child>soft_right_fingertip_pad</child>
+        <parent>right_finger_tip</parent>
+    </joint>
+</robot>

@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<robot name="gripper" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="scale_factor" value="0.3" />
+        <include>
+            <uri>model://gripper_model</uri> 
+            <pose>0 0 0.0 0 0 0</pose>
+        </include>
+        <joint name='ground_gripper_joint' type='fixed'>
+            <parent>world</parent>
+            <child>gripper_model::base</child>
+        </joint>
+        <plugin name='set_joint_velocity_plugin' filename='/home/yunting/programs/tutorial_ws/devel/lib/libjoint_controller_plugin.so'>
+            <left_finger_force>0.05</left_finger_force>
+            <right_finger_force>-0.05</right_finger_force>
+            <left_fingertip_force>0.01</left_fingertip_force>
+            <right_fingertip_force>-0.01</right_fingertip_force> 
+        </plugin>
+        <!-- SERVO -->
+        <link name="servo">
+            <pose relative_to='gripper_model'>${-0.953 * scale_factor} ${-0.103 * scale_factor} ${0.1 * scale_factor} 0 0 0</pose> 
+            <inertial>
+            <inertia>
+                <ixx>${0.01 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.01 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.01 * scale_factor**5}</izz>
+            </inertia>
+                <mass>${0.01 * scale_factor**3}</mass>
+            </inertial>
+            <collision name="collision">
+            <pose>0 0 0 0 0 0 </pose>
+            <geometry>
+                <cylinder>
+                    <radius>${0.1 * scale_factor}</radius>
+                    <length>${0.2 * scale_factor}</length>
+                </cylinder>
+            </geometry>
+            <surface>
+            <friction>
+                <ode>
+                <mu>0.001</mu>     
+                <mu2>0.001</mu2>  
+                </ode>
+            </friction>
+            </surface>
+            </collision>
+            <visual name="visual">
+            <pose>0 0 0 0 0 0 </pose>
+            <geometry>
+                <cylinder>
+                    <radius>${0.1 * scale_factor}</radius>
+                    <length>${0.2 * scale_factor}</length>
+                </cylinder>
+            </geometry>
+            </visual>
+        </link>
+        <joint name='SERVO_joint' type='revolute'>
+            <parent>gripper_model::riser</parent>
+            <child>servo</child>
+            <pose>0 0 0 0 -0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                <lower>0</lower>
+                <upper>2.44346</upper>
+                <velocity>3</velocity> 
+                <effort>100</effort>
+                </limit>
+            </axis>
+            <sensor name="force_torque" type="force_torque">
+            <update_rate>30</update_rate>
+            <force_torque>
+                <frame>child</frame>
+                <measure_direction>child_to_parent</measure_direction>
+            </force_torque>
+        </sensor>
+        </joint>
+        <include>
+            <uri>model://cable_modelD</uri> 
+            <name>servo_cable</name>
+            <pose>${-0.95 * scale_factor} 0 ${0.1 * scale_factor} 0 0 0</pose> 
+        </include>
+        <joint name='servo_cable_joint' type='ball'>
+            <parent>servo</parent>
+            <child>servo_cable::segment_1_sphere</child>
+        </joint>
+        <include>
+            <uri>model://cable_modelB</uri> 
+            <name>servo_cable2</name>
+            <pose>${-0.764 * scale_factor} 0 0 0 0 0</pose> 
+        </include>
+        <joint name='servo_cable_joint2' type='ball'>
+            <parent>servo_cable::end_sphere</parent>
+            <child>servo_cable2::segment_1_sphere</child>
+        </joint>
+        <link name="box_link">
+            <pose relative_to='gripper_model'>${-0.367 * scale_factor} 0 ${0.0725 * scale_factor} 0 0 0</pose>
+            <inertial>
+            <inertia>
+                <ixx>${0.01 * scale_factor**5}</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>${0.01 * scale_factor**5}</iyy>
+                <iyz>0</iyz>
+                <izz>${0.01 * scale_factor**5}</izz>
+            </inertia>
+                <mass>${2 * scale_factor**3}</mass>
+            </inertial>
+            <collision name="collision">
+            <geometry>
+                <box>
+                    <size>${0.15 * scale_factor} ${0.2 * scale_factor} ${0.145 * scale_factor}</size>
+                </box>
+            </geometry>
+            <surface>
+            <friction>
+                <ode>
+                <mu>0.001</mu>     
+                <mu2>0.001</mu2>  
+                </ode>
+            </friction>
+            </surface>
+            </collision>
+            <visual name="visual">
+            <geometry>
+                <box>
+                    <size>${0.15 * scale_factor} ${0.2 * scale_factor} ${0.145 * scale_factor}</size>
+                </box>
+            </geometry>
+            </visual>
+        </link>
+        <joint name='box_joint' type='fixed'>
+            <parent>gripper_model::riser</parent>
+            <child>box_link</child>
+        </joint>
+
+        <!-- PULLEY -->
+        <include>
+            <uri>model://pulley</uri>
+            <name>pulley</name>
+            <pose>${-0.5044 * scale_factor} 0 ${0.1 * scale_factor} 0 0 0</pose>
+        </include>
+        <joint name='PULLEY_joint' type='prismatic'>
+            <parent>gripper_model::riser</parent>
+            <child>pulley::bottom</child>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                <lower>${-100 * scale_factor}</lower>
+                <upper>0</upper>
+                </limit>
+                <dynamics>
+                <spring_reference>0</spring_reference>
+                <spring_stiffness>0</spring_stiffness>
+                <damping>0.8</damping>
+                </dynamics>
+            </axis>
+        </joint>
+        <joint name='pulley_servo_cable' type='fixed'>
+            <parent>servo_cable2::end_sphere</parent>
+            <child>pulley::top</child>
+        </joint>
+        <joint name='pulley_servo_cablea' type='fixed'>
+            <parent>servo_cable::end_sphere</parent>
+            <child>pulley::bottom</child>
+        </joint>
+        <include>
+            <uri>model://cable_modelD</uri> 
+            <name>pulley_left_cable_model</name>
+            <pose>${-0.5184 * scale_factor} ${0.046 * scale_factor} ${0.1 * scale_factor} 0 0 -0.10472</pose> 
+        </include>
+        <joint name='ball_joint_pulley_left' type='ball'>
+            <parent>pulley::bearing</parent> 
+            <child>pulley_left_cable_model::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='joint_pulley_left' type='ball'>
+            <parent>pulley_left_cable_model::end_sphere</parent>
+            <child>straight_left_cable_model3c::end_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <include>
+            <uri>model://cable_modelD</uri> 
+            <name>pulley_right_cable_model</name>
+            <pose>${-0.5184 * scale_factor} ${-0.046 * scale_factor} ${0.1 * scale_factor} 0 0 0.10472</pose> 
+        </include>
+        <joint name='ball_joint_pulley_right' type='ball'>
+            <parent>pulley::bearing</parent> 
+            <child>pulley_right_cable_model::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='joint_pulley_right' type='ball'>
+            <parent>pulley_right_cable_model::end_sphere</parent>
+            <child>straight_right_cable_model3c::end_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+
+        <!-- GRIPPER -->
+        <!-- LEFT SIDE -->
+        <!-- cable joints -->
+        <include>
+            <uri>model://cable_modelA</uri> 
+            <name>straight_left_cable_model3c</name>
+            <pose>${0.031 * scale_factor} ${0.025 * scale_factor} 0 0 0 3.14159</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelE</uri> 
+            <name>curved_left_cable_model6</name>
+            <pose>${0.037 * scale_factor} ${0.025 * scale_factor} ${0.1 * scale_factor} 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelA</uri> 
+            <name>left_cable_model4</name>
+            <pose>${0.134 * scale_factor} ${0.073 * scale_factor} 0 0 0 1.0472</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelC</uri> 
+            <name>left_cable_model3a</name>
+            <pose>${0.32 * scale_factor} ${0.392 * scale_factor} ${0.1 * scale_factor} 0 0 1.0472</pose>
+        </include>
+
+        <joint name='ball_joint_left' type='ball'>
+            <parent>straight_left_cable_model3c::segment_1_sphere</parent>
+            <child>curved_left_cable_model6::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='ball_joint_link_left' type='ball'>
+            <parent>curved_left_cable_model6::end_sphere</parent>
+            <child>left_cable_model4::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='ball_joint_tip_left' type='ball'>
+            <parent>left_cable_model4::end_sphere</parent>
+            <child>left_cable_model3a::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+
+        <!-- end joints -->
+        <joint name='revolute_joint_left' type='ball'>
+            <parent>left_cable_model3a::end_sphere</parent>
+            <child>gripper_model::left_finger_tip</child>
+            <pose>${0.03 * scale_factor} ${-0.15 * scale_factor} 0 0 -0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+        <!-- RIGHT SIDE -->
+        <!-- cable joints -->
+        <include>
+            <uri>model://cable_modelA</uri> 
+            <name>straight_right_cable_model3c</name>
+            <pose>${0.031 * scale_factor} ${-0.025 * scale_factor} 0 0 0 3.14159</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelE</uri> 
+            <name>curved_right_cable_model5</name>
+            <pose>${0.037 * scale_factor} ${-0.025 * scale_factor} ${0.2 * scale_factor} 3.14159 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelA</uri> 
+            <name>right_cable_model4</name>
+            <pose>${0.134 * scale_factor} ${-0.073 * scale_factor} 0 0 0 -1.0472</pose>
+        </include>
+
+        <include>
+            <uri>model://cable_modelC</uri> 
+            <name>right_cable_model3a</name>
+            <pose>${0.32 * scale_factor} ${-0.392 * scale_factor} ${0.2 * scale_factor} 3.14159 0 -1.0472</pose>
+        </include>
+
+        <joint name='ball_joint_right' type='ball'>
+            <parent>straight_right_cable_model3c::segment_1_sphere</parent>
+            <child>curved_right_cable_model5::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='ball_joint_link_right' type='ball'>
+            <parent>curved_right_cable_model5::end_sphere</parent>
+            <child>right_cable_model4::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+        <joint name='ball_joint_tip_right' type='ball'>
+            <parent>right_cable_model4::end_sphere</parent>
+            <child>right_cable_model3a::segment_1_sphere</child>
+            <pose>0 0 0 0 -0 0</pose>
+        </joint>
+
+        <!-- end joints -->
+        <joint name='revolute_joint_right' type='ball'>
+            <parent>right_cable_model3a::end_sphere</parent>
+            <child>gripper_model::right_finger_tip</child>
+            <pose>${0.03 * scale_factor} ${0.15 * scale_factor} 0 0 0 -0 0</pose>
+            <axis>
+                <xyz>0 0 1</xyz>
+            </axis>
+        </joint>
+
+    </robot>
+

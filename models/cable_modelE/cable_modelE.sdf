@@ -1,0 +1,457 @@
+<?xml version="1.0" ?>
+<sdf version='1.7'>
+<model name="cable_modelE">
+  <link name="segment_1_sphere">
+    <pose>0 0 0.015 1.57 -0 -1.57</pose>
+    <inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_1_sphere_collision">
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name="segment_1_sphere_visual">
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <material>
+        <script>
+          <name>Gazebo/Gray</name>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+        </script>
+      </material>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="segment_1_sphere_to_cylinder" type="ball">
+    <pose relative_to="segment_1_sphere">0 0 0 0 -0 0</pose>
+    <parent>segment_1_sphere</parent>
+    <child>segment_1_cylinder</child>
+    <axis>
+      <xyz>1 0 0</xyz>
+      <limit>
+        <lower>-3.14</lower>
+        <upper>3.14</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="segment_1_cylinder">
+    <pose relative_to="segment_1_sphere_to_cylinder">0 0 0 0 -0 0</pose>
+    <inertial>
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_1_cylinder_collision">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0.5</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1500</kp>
+            <kd>0.5</kd>
+            <max_vel>0.2</max_vel>
+            <min_depth>0.005</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <visual name="segment_1_cylinder_visual">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="segment_1_cylinder_to_segment_3_sphere" type="ball">
+    <pose relative_to="segment_1_cylinder">0 0 -0.010799999999999999 0 -0 0</pose>
+    <parent>segment_1_cylinder</parent>
+    <child>segment_3_sphere</child>
+    <axis>
+      <xyz>0 1 0</xyz>
+      <limit>
+        <lower>-3.14</lower>
+        <upper>3.14</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="segment_3_sphere">
+    <pose relative_to="segment_1_cylinder_to_segment_3_sphere">0 0 0 0 0.453786 0</pose>
+    <inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_3_sphere_collision">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name="segment_3_sphere_visual">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <material>
+        <script>
+          <name>Gazebo/Gray</name>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+        </script>
+      </material>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="segment_3_sphere_to_cylinder" type="ball">
+    <pose relative_to="segment_3_sphere">0 0 0 0 -0 0</pose>
+    <parent>segment_3_sphere</parent>
+    <child>segment_3_cylinder</child>
+    <axis>
+      <xyz>1 0 0</xyz>
+      <limit>
+        <lower>-3.14</lower>
+        <upper>3.14</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="segment_3_cylinder">
+    <pose relative_to="segment_3_sphere_to_cylinder">0 0 0 0 -0 0</pose>
+    <inertial>
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_3_cylinder_collision">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0.5</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1500</kp>
+            <kd>0.5</kd>
+            <max_vel>0.2</max_vel>
+            <min_depth>0.005</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <visual name="segment_3_cylinder_visual">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="segment_3_cylinder_to_segment_4_sphere" type="ball">
+    <pose relative_to="segment_3_cylinder">0 0 -0.010799999999999999 0 -0 0</pose>
+    <parent>segment_3_cylinder</parent>
+    <child>segment_4_sphere</child>
+    <axis>
+      <xyz>0 1 0</xyz>
+      <limit>
+        <lower>-3.14</lower>
+        <upper>3.14</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="segment_4_sphere">
+    <pose relative_to="segment_3_cylinder_to_segment_4_sphere">0 0 0 0 0.383972 0</pose>
+    <inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_4_sphere_collision">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name="segment_4_sphere_visual">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <material>
+        <script>
+          <name>Gazebo/Gray</name>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+        </script>
+      </material>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="segment_4_sphere_to_cylinder" type="ball">
+    <pose relative_to="segment_4_sphere">0 0 0 0 -0 0</pose>
+    <parent>segment_4_sphere</parent>
+    <child>segment_4_cylinder</child>
+    <axis>
+      <xyz>1 0 0</xyz>
+      <limit>
+        <lower>-3.14</lower>
+        <upper>3.14</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="segment_4_cylinder">
+    <pose relative_to="segment_4_sphere_to_cylinder">0 0 0 0 -0 0</pose>
+    <inertial>
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="segment_4_cylinder_collision">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <soft_cfm>0.5</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1500</kp>
+            <kd>0.5</kd>
+            <max_vel>0.2</max_vel>
+            <min_depth>0.005</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <visual name="segment_4_cylinder_visual">
+      <pose>0 0 -0.005399999999999999 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <length>0.009</length>
+          <radius>0.0009</radius>
+        </cylinder>
+      </geometry>
+    </visual>
+    <self_collide>1</self_collide>
+  </link>
+  <joint name="joint_end_sphere" type="ball">
+    <pose relative_to="segment_4_cylinder">0 0 -0.010799999999999999 0 -0 0</pose>
+    <parent>segment_4_cylinder</parent>
+    <child>end_sphere</child>
+    <axis>
+      <xyz>0 1 0</xyz>
+      <limit>
+        <lower>-1.57</lower>
+        <upper>1.57</upper>
+        <effort>10</effort>
+        <velocity>3</velocity>
+      </limit>
+      <dynamics>
+        <damping>0.1</damping>
+        <friction>0</friction>
+        <spring_reference>0</spring_reference>
+        <spring_stiffness>0</spring_stiffness>
+      </dynamics>
+    </axis>
+  </joint>
+  <link name="end_sphere">
+    <pose relative_to="joint_end_sphere">0 0 0 0 -0 0</pose>
+    <inertial>
+      <pose>0 0 0 0 -0 0</pose>
+      <mass>0.0025</mass>
+      <inertia>
+        <ixx>0.000001</ixx>
+        <ixy>0</ixy>
+        <ixz>0</ixz>
+        <iyy>0.000001</iyy>
+        <iyz>0</iyz>
+        <izz>0.000001</izz>
+      </inertia>
+    </inertial>
+    <collision name="end_sphere_collision">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.001</mu>
+            <mu2>0.001</mu2>
+          </ode>
+        </friction>
+      </surface>
+    </collision>
+    <visual name="end_sphere_visual">
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <sphere>
+          <radius>0.0009</radius>
+        </sphere>
+      </geometry>
+    </visual>
+  </link>
+  <self_collide>1</self_collide>
+</model>
+</sdf>

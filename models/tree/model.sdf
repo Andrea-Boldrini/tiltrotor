@@ -1,0 +1,645 @@
+<sdf version="1.7">
+  <model name="tree">
+    <static>false</static>
+    <joint name='ground_joint' type='fixed'>
+      <parent>world</parent>
+      <child>body</child>
+    </joint>
+    <link name="body">
+      <pose>0 0 2 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.06233</radius>
+            <length>4</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.0633</radius>
+            <length>4</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface1">
+      <pose relative_to="body">0 0.067 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface2">
+      <pose relative_to="body">0 -0.067 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface3">
+      <pose relative_to="body">-0.067 0 0 0 0 1.57</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface4">
+      <pose relative_to="body">0.067 0 0 0 0 0.523599</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface5">
+      <pose relative_to="body">-0.02 -0.062 0 0 0 0.523599</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface6">
+      <pose relative_to="body">0.02 0.062 0 0 0 0.523599</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface7">
+      <pose relative_to="body">-0.02 0.062 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface8">
+      <pose relative_to="body">0.02 -0.062 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface9">
+      <pose relative_to="body">0.049 0.043 0 0 0 0.698132</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface10">
+      <pose relative_to="body">-0.049 0.043 0 0 0 0.698132</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface11">
+      <pose relative_to="body">0.049 -0.043 0 0 0 0.698132</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+    <link name="surface12">
+      <pose relative_to="body">-0.049 -0.043 0 0 0 0.698132</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <inertia>
+          <ixx>0.04312741</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04312741</iyy>
+          <iyz>0</iyz>
+          <izz>0.0000741</izz>
+        </inertia>
+        <mass>0.0407</mass>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>4.8</mu>
+              <mu2>4.8</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.00333 0.00667 4</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <script>
+            <uri>model://tree/materials/scripts/</uri>
+            <uri>model://tree/materials/textures/</uri>
+            <name>OakTree/Bark</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+     <joint name='joint1' type='fixed'>
+        <parent>body</parent>
+        <child>surface1</child>
+    </joint>
+    <joint name='joint2' type='fixed'>
+        <parent>body</parent>
+        <child>surface2</child>
+    </joint>
+    <joint name='joint3' type='fixed'>
+        <parent>body</parent>
+        <child>surface3</child>
+    </joint>
+    <joint name='joint4' type='fixed'>
+        <parent>body</parent>
+        <child>surface4</child>
+    </joint>
+    <joint name='joint5' type='fixed'>
+        <parent>body</parent>
+        <child>surface5</child>
+    </joint>
+    <joint name='joint6' type='fixed'>
+        <parent>body</parent>
+        <child>surface6</child>
+    </joint>
+    <joint name='joint7' type='fixed'>
+        <parent>body</parent>
+        <child>surface7</child>
+    </joint>
+    <joint name='joint8' type='fixed'>
+        <parent>body</parent>
+        <child>surface8</child>
+    </joint>
+    <joint name='joint9' type='fixed'>
+        <parent>body</parent>
+        <child>surface9</child>
+    </joint>
+    <joint name='joint10' type='fixed'>
+        <parent>body</parent>
+        <child>surface10</child>
+    </joint>
+    <joint name='joint11' type='fixed'>
+        <parent>body</parent>
+        <child>surface11</child>
+    </joint>
+    <joint name='joint12' type='fixed'>
+        <parent>body</parent>
+        <child>surface12</child>
+    </joint>
+  </model>
+</sdf>
