@@ -444,7 +444,7 @@ void FlightController::sendCmds()
     _f.x = LQR[0] - _m*9.81*sin_pitch;
     _f.z = LQR[1] + _m*9.81*cos_pitch;
     _tilt = -atan(_f.x / _f.z);
-    if (abs(_current.pitch_deg) < 81) {
+    if (abs(_current.pitch_deg) < 51) {
         _T = (sqrt(pow(_f.x, 2) + pow(_f.z, 2)))/(2*9.81*_m*0.82);
     } else {
         _T = 0.612 + _u.vz/2/9.81/_m;
