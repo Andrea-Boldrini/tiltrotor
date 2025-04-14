@@ -80,7 +80,7 @@ private:
     double _y_sp_temp;
     double _z_sp_temp;
     bool _sp_adjusted;
-    struct {double x,y,x_local,y_local,vx_local,vy_local,z,yaw_deg,yaw_rad,pitch_deg,pitch_rad,roll_deg,roll_rad,vx,vy,vz,q;} _current;
+    struct {double x,y,x_local,y_local,vx_local,vy_local,z,yaw_deg,yaw_rad,pitch_deg,pitch_rad,roll_deg,roll_rad,vx,vy,vz,q,tau;} _current;
     struct {double x,y,z,yaw_deg,pitch_deg,servo_angle,x_new,y_new;} _desired;
     struct {double x,y,z,roll,pitch,yaw,vx,vy,vz,q,tau;} _e;
     struct {double x,y,z,roll,pitch,yaw,vx,vy,vz,tau;} _i_e;
@@ -95,6 +95,7 @@ private:
     double _tilt;  
     double _T; 
     bool _yaw_flag;
+    double _old_q;
     std::vector<std::vector<double>> K;
     std::vector<double> _E;    
 
