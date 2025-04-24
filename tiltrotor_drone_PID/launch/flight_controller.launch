@@ -9,7 +9,7 @@
 		<param name="kp_y" value="1.5"/>
 		<param name="ki_y" value="0"/>
 		<param name="kd_y" value="0.3"/>
-		<param name="kp_z" value="3"/>
+		<param name="kp_z" value="2"/>
 		<param name="ki_z" value="0.0"/>
 		<param name="kd_z" value="0"/>
 		<param name="kp_vx" value="10"/>
@@ -33,5 +33,6 @@
 		<param name="lim_ux" value="20.0"/>
 		<param name="lim_uy" value="20.0"/>
 		<param name="lim_uz" value="10.0"/>
+		<param name="m" value="1.12"/>
 	</node>
 </launch>
