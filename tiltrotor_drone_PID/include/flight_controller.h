@@ -75,9 +75,9 @@ private:
     double dt1;
     double dt2;
     //float _contact_f;
-    double _x_sp_temp;
-    double _y_sp_temp;
-    double _z_sp_temp;
+    //double _x_sp_temp;
+    //double _y_sp_temp;
+    //double _z_sp_temp;
     bool _sp_adjusted;
     struct {double x,y,x_local,y_local,vx_local,vy_local,z,yaw_deg,yaw_rad,pitch_deg,pitch_rad,roll_deg,roll_rad,vx,vy,vz,q;} _current;
     struct {double x,y,z,yaw_deg,pitch_deg,servo_angle,x_new,y_new;} _desired;
@@ -93,8 +93,8 @@ private:
     struct {double x,y,z;} _lim_u;
     double _tilt; 
     double _T;  
+    double _m;
     bool _yaw_flag;
-    std::vector<std::vector<double>> K;
     std::vector<double> _E;
 
     std::chrono::high_resolution_clock::time_point _t0, _t1;
@@ -132,7 +132,6 @@ public:
     double getYawDeg(geometry_msgs::PoseStamped &msg);
     double getPitchDeg(geometry_msgs::PoseStamped &msg);
     double getRollDeg(geometry_msgs::PoseStamped &msg);
-    std::vector<std::vector<double>> getK();
 
 };
 #endif
