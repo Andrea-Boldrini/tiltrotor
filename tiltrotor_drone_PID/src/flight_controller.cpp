@@ -174,6 +174,7 @@ void FlightController::initParams()
     ros::param::get(ros::this_node::getName() + "/lim_ux", _lim_u.x);
     ros::param::get(ros::this_node::getName() + "/lim_uy", _lim_u.y);
     ros::param::get(ros::this_node::getName() + "/lim_uz", _lim_u.z);
+    ros::param::get(ros::this_node::getName() + "/m", _m);
 
     _drone_name_received = false;
     _sp_adjusted = false;
@@ -209,8 +210,7 @@ void FlightController::sendCurrentDronePose()
         _current.vx = _current_drone_twist_msg.twist.linear.x;
         _current.vy = _current_drone_twist_msg.twist.linear.y;
         _current.vz = _current_drone_twist_msg.twist.linear.z;
-        
-        K = getK();
+
         //_current.f = _contact_f;
         
         double cos_yaw = cos(_current.yaw_rad);
@@ -261,15 +261,15 @@ void FlightController::sendCmds()
     //   _sp_adjusted = false;
     //}
     
-    ROS_INFO("sp x: %f", _desired.x);
+    //ROS_INFO("sp x: %f", _desired.x);
     ROS_INFO("current x: %f", _current.x_local);
-    ROS_INFO("sp y: %f", _desired.y);
+    //ROS_INFO("sp y: %f", _desired.y);
     ROS_INFO("current y: %f", _current.y_local);
-    ROS_INFO("sp z: %f", _desired.z);
+    //ROS_INFO("sp z: %f", _desired.z);
     ROS_INFO("current z: %f", _current.z);
-    ROS_INFO("sp pitch: %f", _desired.pitch_deg);
+    //ROS_INFO("sp pitch: %f", _desired.pitch_deg);
     ROS_INFO("current pitch: %f", _current.pitch_deg);
-    ROS_INFO("sp yaw: %f", _desired.yaw_deg);
+    //ROS_INFO("sp yaw: %f", _desired.yaw_deg);
     ROS_INFO("current yaw: %f", _current.yaw_deg);
     
     // Calculate errors and changes in errors to be input to PID controllers
@@ -293,7 +293,7 @@ void FlightController::sendCmds()
     double sin_yaw = sin(_current.yaw_rad - last_config_.desired_yaw*3.1416/180);
     
     if (abs(_desired.yaw_deg - last_config_.desired_yaw) > 0.1) {
-        _yaw_flag = false;    
+        _yaw_flag = false;  
     }
     
     if (!_yaw_flag) {
@@ -377,8 +377,7 @@ void FlightController::sendCmds()
     _u.vy = -(_kp.vy * _e.vy + _kd.vy * _d_e.vy + _ki.vy * _i_e.vy);
     _u.vz = (_kp.vz * _e.vz + _kd.vz * _d_e.vz + _ki.vz * _i_e.vz);
     
-    double _m = 1.12;
-    _T = 0.6 + _u.vz / (2*_m*9.81); 
+    _T = 0.612 + _u.vz / (2*_m*9.81); 
     _tilt = -(_u.vx*3.1416/180 - _current.pitch_rad);
     
     //ROS_WARN("sp roll: %f", _u.vy);
@@ -474,19 +473,5 @@ double FlightController::getRollDeg(geometry_msgs::PoseStamped &msg)
     roll = (roll / 3.1416) * 180;
 
     return roll;
-}
-
-std::vector<std::vector<double>> FlightController::getK()
-{
-    std::vector<std::vector<double>> K(3, std::vector<double>(6, 0.0));
-    
-    K[0][0] = 5;
-    K[0][1] = 6;
-    K[1][2] = 5;
-    K[1][3] = 6;
-    K[2][4] = 0;
-    K[2][5] = 0;
-    
-    return K;
 }
 
