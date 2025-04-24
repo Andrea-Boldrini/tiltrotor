@@ -156,27 +156,22 @@ void FlightController::initParams()
     ros::param::get(ros::this_node::getName() + "/kp_roll", _kp.roll);
     ros::param::get(ros::this_node::getName() + "/ki_roll", _ki.roll);
     ros::param::get(ros::this_node::getName() + "/kd_roll", _kd.roll);
-    ros::param::get(ros::this_node::getName() + "/kp_pitch", _kp.pitch);
-    ros::param::get(ros::this_node::getName() + "/ki_pitch", _ki.pitch);
-    ros::param::get(ros::this_node::getName() + "/kd_pitch", _kd.pitch);
     ros::param::get(ros::this_node::getName() + "/kp_yaw", _kp.yaw);
     ros::param::get(ros::this_node::getName() + "/ki_yaw", _ki.yaw);
     ros::param::get(ros::this_node::getName() + "/kd_yaw", _kd.yaw);
-    ros::param::get(ros::this_node::getName() + "/kp_vx", _kp.vx);
-    ros::param::get(ros::this_node::getName() + "/ki_vx", _ki.vx);
-    ros::param::get(ros::this_node::getName() + "/kd_vx", _kd.vx);
     ros::param::get(ros::this_node::getName() + "/kp_vy", _kp.vy);
     ros::param::get(ros::this_node::getName() + "/ki_vy", _ki.vy);
     ros::param::get(ros::this_node::getName() + "/kd_vy", _kd.vy);
     ros::param::get(ros::this_node::getName() + "/kp_vz", _kp.vz);
     ros::param::get(ros::this_node::getName() + "/ki_vz", _ki.vz);
     ros::param::get(ros::this_node::getName() + "/kd_vz", _kd.vz);
-    ros::param::get(ros::this_node::getName() + "/lim_ux", _lim_u.x);
     ros::param::get(ros::this_node::getName() + "/lim_uy", _lim_u.y);
     ros::param::get(ros::this_node::getName() + "/lim_uz", _lim_u.z);
     ros::param::get(ros::this_node::getName() + "/kp_tau", _kp.tau);
     ros::param::get(ros::this_node::getName() + "/ki_tau", _ki.tau);
     ros::param::get(ros::this_node::getName() + "/kd_tau", _kd.tau);
+    ros::param::get(ros::this_node::getName() + "/m", _m);
+    ros::param::get(ros::this_node::getName() + "/I", _I);
 
     _drone_name_received = false;
     _sp_adjusted = false;
@@ -390,7 +385,6 @@ void FlightController::sendCmds()
     }
     
     _previous_e.yaw = _e.yaw;
-    //_previous_e.pitch = _e.pitch;
     _previous_e.roll = _e.roll;
         
     _e.yaw =  _desired.yaw_deg * 3.1416 / 180 - _current.yaw_rad;
@@ -398,46 +392,31 @@ void FlightController::sendCmds()
     _e.roll = _u.vy * 3.1416 / 180 - _current.roll_rad;
             
     _i_e.yaw += _e.yaw * dt2;
-    //_i_e.pitch += _e.pitch * dt2;
     _i_e.roll += _e.roll * dt2;
     
     _d_e.yaw = (_e.yaw - _previous_e.yaw) / dt2;
-    //_d_e.pitch = (_e.pitch - _previous_e.pitch) / dt2;
     _d_e.roll = (_e.roll - _previous_e.roll) / dt2; 
 
     _t4 = std::chrono::high_resolution_clock::now();
     
-    //_u.pitch = _kp.pitch * _e.pitch + _kd.pitch * _d_e.pitch + _ki.pitch * _i_e.pitch;
     _u.yaw = _kp.yaw * _e.yaw + _kd.yaw * _d_e.yaw + _ki.yaw * _i_e.yaw;
     _u.roll = _kp.roll * _e.roll + _kd.roll * _d_e.roll + _ki.roll * _i_e.roll;
    
     // LQR controller
     _e.vx = _u.x - _current.vx_local;
     _e.vz = _u.z - _current.vz;
-    //_e.q = _u.pitch - _current.q;
     _e.q = 0 - _current.q;
     
     std::vector<double> _E = {_e.x, _e.vx, _e.z, _e.vz, _e.pitch, _e.q}; 
     std::vector<double> LQR(3, 0.0);
     std::vector<std::vector<double>> K = getK();
     
-    //if (abs(_current.pitch_deg) > 50) {
-    //    double w = 0;
-    //    double y = 0.5;
-    //    K[0][0] = 5*w;
-    //    K[0][1] = 6.0166*y;
-    //    K[1][2] = 5*w;
-    //    K[1][3] = 6.0166*y;
-    //}
-    
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 6; ++j) {
             LQR[i] += K[i][j] * _E[j];
         }
     }
-    
-    double _m = 1.12; 
-    double _I = 0.035;   
+      
     double cos_pitch = cos(_current.pitch_rad);
     double sin_pitch = sin(_current.pitch_rad);
     
@@ -460,14 +439,10 @@ void FlightController::sendCmds()
         return;
     }
     
-    _current.tau = (_current.q - _old_q) / dt3 * _I;
-    
-    _previous_e.tau = _e.tau;
-       
-    _e.tau = LQR[2] - _current.tau;
-            
+    _current.tau = (_current.q - _old_q) / dt3 * _I;    
+    _previous_e.tau = _e.tau;     
+    _e.tau = LQR[2] - _current.tau;      
     _i_e.tau += _e.tau * dt3;
-
     _d_e.tau = (_e.tau - _previous_e.tau) / dt3;
 
     _t6 = std::chrono::high_resolution_clock::now();
@@ -476,7 +451,6 @@ void FlightController::sendCmds()
     
     _setpoint_raw_msg.type_mask = 128;
     _setpoint_raw_msg.body_rate.x = _u.roll;
-    //_setpoint_raw_msg.body_rate.y = _u.pitch;
     _setpoint_raw_msg.body_rate.y = _u.tau;
     _setpoint_raw_msg.body_rate.z = _u.yaw;
     _setpoint_raw_msg.thrust = _T;
