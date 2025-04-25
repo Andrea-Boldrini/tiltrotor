@@ -447,16 +447,6 @@ void FlightController::sendCmds()
     
     _tilt_msg.data = _tilt;       
     _tilt_pub.publish(_tilt_msg); 
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
-    //ROS_INFO("space: %f", 0);
     //ROS_INFO("sp tilt: %f", _tilt*180/3.1416);
     //ROS_INFO("thrust: %f", _T_tot);
     //ROS_INFO("thrust [0-1]: %f", _T);
