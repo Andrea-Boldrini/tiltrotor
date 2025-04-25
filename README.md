@@ -65,8 +65,8 @@ rosrun rqt_reconfigure rqt_reconfigure
 # Guide for Matlab/Simulink simulation
 `position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
-In both the folders it is possible to choose between three different Simulink modellings, named `model_3`, `model_4` and `model_5`, related to three different control schemes. 
+In both the folders it is possible to choose between four different Simulink modellings, named `model_3`, `model_4`, `model_5` and `model_6`, related to four different control schemes (respectively PID, LQR+PID, LQR+PID and MPC+PID). In `position_attitude_loops_Simscape` it is also avaible another MPC implementation, called `model_6`.
 
-To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `optimal_controller_pitching` to define the optimal control gain. 
+To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `LQR_controller_pitching` to define the optimal control gain, while before the simulation with `model_6`, which relies on MPD, it is required to run `MPC_controller_pitching` . 
 
-After every simulation it is possible to plot trajectory, input values and other useful variables using the file for visualization. 
+After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. 
