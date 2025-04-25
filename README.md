@@ -38,7 +38,10 @@ Install QGroundControl and, when running simulation, launch it and set the follo
 EKF2_EV_CTRL = 15
 EKF2_HGT_REF = VISION
 ```
-Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID and PID+LQR. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_MPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR and MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+
+When using `tiltrotor_drone_MPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git` in order to apply external disturbances on the UAV.
+
 ## Start of the simulation
 Build the environment:
 ```
