@@ -33,13 +33,9 @@ Eigen::Matrix3d rotationMatrixFromEuler(double roll, double pitch, double yaw) {
 Eigen::Matrix3d TMatrix(double pitch, double roll) {
     Eigen::Matrix3d T_matrix;
 
-    //T_matrix << 1, 0, sin(theta),
-    //     0, cos(phi), -sin(phi)*cos(theta),
-    //     0, sin(phi), cos(phi)*cos(theta);
-    
-    T_matrix << 1, sin(roll) * tan(pitch), cos(roll) * tan(pitch),
-              0, cos(roll),            -sin(roll),
-              0, sin(roll) / cos(pitch), cos(roll) / cos(pitch);
+    T_matrix << 1, 0, -sin(pitch),
+         0, cos(roll), sin(roll)*cos(pitch),
+         0, -sin(roll), cos(roll)*cos(pitch);
 
     return T_matrix;
 }
@@ -129,7 +125,6 @@ std::pair<Eigen::VectorXd, double> WRENCHEstimator::computeWrench(
     double roll = attitude[0], pitch = attitude[1], yaw = attitude[2];
     Eigen::Matrix3d R = rotationMatrixFromEuler(roll, pitch, yaw);
     Eigen::Matrix3d T_mat = TMatrix(pitch, roll);
-    //Eigen::Matrix3d Q = R.transpose() * T_mat;
     Eigen::Matrix3d Q = T_mat;
 
     // Compute time delta
