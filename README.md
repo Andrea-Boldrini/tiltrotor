@@ -40,7 +40,7 @@ EKF2_HGT_REF = VISION
 ```
 Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_MPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR and MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
 
-When using `tiltrotor_drone_MPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git` in order to apply external disturbances on the UAV.
+When using `tiltrotor_drone_MPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV.
 
 ## Start of the simulation
 Build the environment:
