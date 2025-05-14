@@ -38,9 +38,9 @@ Install QGroundControl and, when running simulation, launch it and set the follo
 EKF2_EV_CTRL = 15
 EKF2_HGT_REF = VISION
 ```
-Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_MPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR and MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_LMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR and linear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
 
-When using `tiltrotor_drone_MPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. Moreover, it is required to download the open-source tools for nonlinear optimization `CasADi` and `qpOASES`.
+When using `tiltrotor_drone_LMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. Moreover, it is required to download the open-source tools for nonlinear optimization `CasADi` and `qpOASES`.
 
 ## Start of the simulation
 Build the environment:
@@ -65,7 +65,7 @@ rosrun rqt_reconfigure rqt_reconfigure
 # Guide for Matlab/Simulink simulation
 `position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
-In both the folders it is possible to choose between four different Simulink modellings, named `model_3`, `model_4`, `model_5` and `model_6`, related to four different control schemes (respectively PID, LQR+PID, LQR+PID and MPC+PID). In `position_attitude_loops_Simscape` it is also avaible another MPC implementation, called `model_7`.
+In both the folders it is possible to choose between four different Simulink modellings, named `model_3`, `model_4`, `model_5` and `model_6`, related to four different control schemes (respectively PID, LQR+PID, LQR+PID and linear MPC+PID). In `position_attitude_loops_Simscape` it is also avaible another linear MPC implementation, called `model_7`.
 
 To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `LQR_controller_pitching` to define the optimal control gain, while before the simulation with `model_6` and `model_7`, which rely on MPD, it is required to run `MPC_controller_pitching` . 
 
