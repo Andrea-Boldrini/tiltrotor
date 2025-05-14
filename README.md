@@ -67,6 +67,6 @@ rosrun rqt_reconfigure rqt_reconfigure
 
 In both the folders it is possible to choose between four different Simulink modellings, named `model_3`, `model_4`, `model_5` and `model_6`, related to four different control schemes (respectively PID, LQR+PID, LQR+PID and linear MPC+PID). In `position_attitude_loops_Simscape` it is also avaible another linear MPC implementation, called `model_7`.
 
-To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `LQR_controller_pitching` to define the optimal control gain, while before the simulation with `model_6` and `model_7`, which rely on MPD, it is required to run `MPC_controller_pitching` . 
+To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `LQR_controller_pitching` to define the optimal control gain, while before the simulation with `model_6` and `model_7`, which rely on MPC, it is required to run `MPC_controller_pitching` . 
 
 After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. 
