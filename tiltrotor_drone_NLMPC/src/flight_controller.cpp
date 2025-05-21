@@ -477,18 +477,11 @@ void FlightController::sendCmds()
     _u.tau_y = _kp.tau_y * _e.tau_y + _kd.tau_y * _d_e.tau_y + _ki.tau_y * _i_e.tau_y;
     _u.tau_z = _kp.tau_z * _e.tau_z + _kd.tau_z * _d_e.tau_z + _ki.tau_z * _i_e.tau_z;
     
-    //std::array<double, 3> _rates_setpoint = {_u.tau_x, _u.tau_y, _u.tau_z};        
-    //std::array<std::array<double, 3>, 3> R_matrix_rotated = Inertial2BodyRotationMatrix(0, -_current.pitch_rad, 0);
-    //std::array<double, 3> _rates_setpoint_rotated = multiplyMatrixVector(R_matrix_rotated, _rates_setpoint);
-    
     _setpoint_raw_msg.type_mask = 128;
 
     _setpoint_raw_msg.body_rate.x = _u.tau_x;
     _setpoint_raw_msg.body_rate.y = _u.tau_y;
     _setpoint_raw_msg.body_rate.z = _u.tau_z;
-    //_setpoint_raw_msg.body_rate.x = _rates_setpoint_rotated[0];
-    //_setpoint_raw_msg.body_rate.y = _rates_setpoint_rotated[1];
-    //_setpoint_raw_msg.body_rate.z = _rates_setpoint_rotated[2];
     
     _setpoint_raw_msg.thrust = _T;
     _setpoint_raw_pub.publish(_setpoint_raw_msg);
