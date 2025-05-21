@@ -49,6 +49,14 @@ cmake .. -DENABLE_QPOASES=ON -DQP_OASES_ROOT_DIR=/usr/local
 make -j$(nproc)
 sudo make install
 ```
+```
+git clone https://github.com/coin-or/qpOASES.git
+cd qpOASES
+mkdir build && cd build
+cmake ..
+make -j$(nproc)
+sudo make install
+```
 
 ## Start of the simulation
 Build the environment:
