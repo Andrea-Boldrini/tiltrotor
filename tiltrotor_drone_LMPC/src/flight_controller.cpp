@@ -481,10 +481,6 @@ void FlightController::sendCmds()
     _setpoint_raw_msg.body_rate.y = _u.tau_y;
     _setpoint_raw_msg.body_rate.z = _u.tau_z;
     
-    //_setpoint_raw_msg.body_rate.x = MPC[2]/26;
-    //_setpoint_raw_msg.body_rate.y = MPC[3]/13;
-    //_setpoint_raw_msg.body_rate.z = MPC[4]/13;
-    
     _setpoint_raw_msg.thrust = _T;
     _setpoint_raw_pub.publish(_setpoint_raw_msg);
     
