@@ -104,7 +104,7 @@ For the first folder (ODEs):
 - `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired).
 
 For the other folder (Simscape):
-- `controller_parameters` initializes the PID parameters (follow the instruction at the head of the file to choose the right values);
+- `controller_parameters` initializes the PID parameters (follow the instructions at the head of the file to choose the right values);
 - `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
 - `MPC_controller_pitching` initializes the MPC controller for `model_6`;
 - `MPC_controller_full` initializes the MPC controller for `model_7`;
@@ -112,5 +112,6 @@ For the other folder (Simscape):
 
 After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. In particular, for the first folder (ODEs):
 - `plots` should be run to plot trajectory with respect to time, velocity, tilt angle and rotors thrust for all models.
+
 For the other folder (Simscape):
 - `integration_plot` should be run to plot trajectory with respect to time, velocity, tilt angle and rotors thrust for all models, external wrench estimation for `model_6`, external wrench estimation for `model_7` and velocity for `model_5`.
