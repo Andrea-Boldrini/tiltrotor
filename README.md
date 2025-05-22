@@ -102,6 +102,7 @@ For the first folder (ODEs):
 - `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
 - `MPC_controller_pitching` initializes the MPC controller for `model_6`;
 - `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired).
+
 For the other folder (Simscape):
 - `controller_parameters` initializes the PID parameters (follow the instruction at the head of the file to choose the right values);
 - `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
