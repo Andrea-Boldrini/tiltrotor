@@ -98,7 +98,7 @@ The first four models are available in both the folders, while the last one just
 To run the simulations it is firstly necessary to initialize the simulation and controller parameters running the relative codes. 
 For the first folder (ODEs):
 - `controller_parameters_model_3_and_4` initializes the PID parameters for `model_3` and `model_4`; 
-- `controller_parameters_model_3_and_4` initializes the PID parameters for `model_5` and `model_6`; 
+- `controller_parameters_model_5_and_6` initializes the PID parameters for `model_5` and `model_6`; 
 - `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
 - `MPC_controller_pitching` initializes the MPC controller for `model_6`;
 - `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired).
