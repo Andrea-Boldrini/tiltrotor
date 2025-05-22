@@ -87,8 +87,29 @@ rosrun rqt_reconfigure rqt_reconfigure
 # Guide for Matlab/Simulink simulation
 `position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
-In both the folders it is possible to choose between four different Simulink modellings, named `model_3`, `model_4`, `model_5` and `model_6`, related to four different control schemes (respectively PID, LQR+PID, LQR+PID and linear MPC+PID). In `position_attitude_loops_Simscape` it is also avaible another linear MPC implementation, called `model_7`.
+It is possible to choose between different Simulink modellings:
+- `model_3` (PID), where all directions are controlled with PID;
+- `model_4` (LQR+PID), where x, z and pitch are controlled with LQR, and y and yaw with PID;
+- `model_5` (LQR+PID), where x, z and pitch are controlled with LQR, and y and yaw with PID;
+- `model_6` (MPC+PID), where x, z and pitch are controlled with MPC, and y and yaw with PID;
+- `model_7` (MPC), where all directions are controlled with MPC.
+The first four models are available in both the folders, while the last one just in the latter.
 
-To run the simulations it is firstly necessary to initialize the simulation and controller parameters, running the relative codes. Before the simulation with `model_4` and `model_5`, which rely also on LQR, it necessary to run `LQR_controller_pitching` to define the optimal control gain, while before the simulation with `model_6` and `model_7`, which rely on MPC, it is required to run respectively `MPC_controller_pitching` and  `MPC_controller_full`. 
+To run the simulations it is firstly necessary to initialize the simulation and controller parameters running the relative codes. 
+For the first folder (ODEs):
+- `controller_parameters_model_3_and_4` initializes the PID parameters for `model_3` and `model_4`; 
+- `controller_parameters_model_3_and_4` initializes the PID parameters for `model_5` and `model_6`; 
+- `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
+- `MPC_controller_pitching` initializes the MPC controller for `model_6`;
+- `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired).
+For the other folder (Simscape):
+- `controller_parameters` initializes the PID parameters (follow the instruction at the head of the file to choose the right values);
+- `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
+- `MPC_controller_pitching` initializes the MPC controller for `model_6`;
+- `MPC_controller_full` initializes the MPC controller for `model_7`;
+- `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired); moreover, it is possible to choose the external wrench to apply to `model_6`.
 
-After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. 
+After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. In particular, for the first folder (ODEs):
+- `plots` should be run to plot trajectory with respect to time, velocity, tilt angle and rotors thrust for all models.
+For the other folder (Simscape):
+- `integration_plot` should be run to plot trajectory with respect to time, velocity, tilt angle and rotors thrust for all models, external wrench estimation for `model_6`, external wrench estimation for `model_7` and velocity for `model_5`.
