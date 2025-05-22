@@ -93,6 +93,7 @@ It is possible to choose between different Simulink modellings:
 - `model_5` (LQR+PID), where x, z and pitch are controlled with LQR, and y and yaw with PID;
 - `model_6` (MPC+PID), where x, z and pitch are controlled with MPC, and y and yaw with PID;
 - `model_7` (MPC), where all directions are controlled with MPC.
+
 The first four models are available in both the folders, while the last one just in the latter.
 
 To run the simulations it is firstly necessary to initialize the simulation and controller parameters running the relative codes. 
