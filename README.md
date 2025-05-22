@@ -109,7 +109,9 @@ For the other folder (Simscape):
 - `LQR_controller_pitching` initializes the LQR controller for `model_4` and `model_5`; 
 - `MPC_controller_pitching` initializes the MPC controller for `model_6`;
 - `MPC_controller_full` initializes the MPC controller for `model_7`;
-- `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired); moreover, it is possible to choose the external wrench to apply to `model_6`.
+- `simulation_parameters` initializes simulation parameters and reference setpoint (that can be updated as desired).
+
+In the Simscape simulations of `model_6` and `model_7` it is possible to apply an external wrench: for the former it is necessary to set the desired values in the `simulation_parameters` file, while for the latter the values have to be set directly in Simulink with the command toolbar.
 
 After every simulation it is possible to plot trajectory, input values and other useful variables using the relative file for visualization. In particular, for the first folder (ODEs):
 - `plots` should be run to plot trajectory with respect to time, velocity, tilt angle and rotors thrust for all models.
