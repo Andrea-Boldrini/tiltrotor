@@ -70,15 +70,15 @@ Build the environment:
 cd catkin_ws
 catkin build
 ```
-Open three terminals. Use the first one to launch the flight code to control the UAV:
-```
-cd catkin_ws
-roslaunch tiltrotor_drone flight_controller.launch
-```
-the second one to launch PX4, ROS and Gazebo:
+Open three terminals. Use the first one to launch PX4, ROS and Gazebo:
 ```
 cd PX4-Autopilot
 roslaunch launch/mavros_posix_sitl.launch
+```
+the second one to launch the flight code to control the UAV:
+```
+cd catkin_ws
+roslaunch tiltrotor_drone flight_controller.launch
 ```
 and the last one to dynamically modify the setpoints of the UAV:
 ```
