@@ -84,7 +84,7 @@ sudo make install
 ```
 Finally, update the `.bashrc` file exporting the relative libraries:
 ```
-export LD_LIBRARY_PATH=$HOME/.../casadi/build/lib:$HOME/.../src/qpoases/build/libs:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~/.../casadi/build/lib:$HOME/.../src/qpoases/build/libs:$LD_LIBRARY_PATH
 ```
 ## Start of the simulation
 Build the environment:
