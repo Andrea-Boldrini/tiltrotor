@@ -15,7 +15,7 @@ Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into director
 10020_gazebo-classic_iris_tiltrotor
 ```
 
-Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory ```launch```, changing vehicle name from `iris` to `iris_tiltrotor`.
+Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 
 Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
 
