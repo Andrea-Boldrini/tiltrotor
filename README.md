@@ -8,6 +8,12 @@ Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guid
 ```plaintext
 make px4_sitl gazebo-classic
 ```
+and update the `.bashrc` file:
+```plaintext
+source ~/.../PX4-Autopilot/Tools/simulation/gazebo-classic/setup_gazebo.bash ~/.../PX4-Autopilot ~/.../PX4-Autopilot/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/.../PX4-Autopilot
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/.../PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic
+```
 
 Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
@@ -78,8 +84,8 @@ sudo make install
 ```
 Finally, update the `.bashrc` file exporting the relative libraries:
 ```
-export LD_LIBRARY_PATH=/.../casadi/build/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/.../qpoases/build/libs:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~/.../casadi/build/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~/.../qpoases/build/libs:$LD_LIBRARY_PATH
 ```
 ## Start of the simulation
 Build the environment:
