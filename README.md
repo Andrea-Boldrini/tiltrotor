@@ -4,16 +4,16 @@ This package consists of a tilt-rotor UAV simulation in the ROS Gazebo environme
 Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contain Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advance fashion.
 # Guide for Ros/Gazebo simulation
 ## Setup of the environment
-1. Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html) (note that noetic mavlink should be downloaded instead of kinetic mavlink, replacing kinetic with noetic in the relative installation line). After installing the PX4 firmware, build the package with the command:
-   ```plaintext
-   make px4_sitl gazebo-classic
-   ```
-   and update the `.bashrc` file:
+1. Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html) (note that noetic mavlink should be downloaded instead of kinetic mavlink, replacing kinetic with noetic in the relative installation line). After installing the PX4 firmware, update the `.bashrc` file:
    ```plaintext
    source ~/.../PX4-Autopilot/Tools/simulation/gazebo-classic/setup_gazebo.bash ~/.../PX4-Autopilot ~/.../PX4-Autopilot/build/px4_sitl_default
    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/.../PX4-Autopilot
    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/.../PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic
    export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/usr/lib/x86_64-linux-gnu/gazebo-9/plugins
+   ```
+   and build the package with the command:
+   ```plaintext
+   make px4_sitl gazebo-classic
    ```
 
 2. Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
