@@ -6,7 +6,14 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
 ## Setup of the environment
 Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html).
 
-Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
+Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
+
+Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
+
+Download the `10020_gazebo_classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line
+```plaintext
+10020_gazebo-classic_iris_tiltrotor
+```
 
 Modify launch files `px4.launch` `mavros_posix_sitl.launch` in directory ```launch```, changing vehicle name from `iris` to `iris_tiltrotor`.
 
