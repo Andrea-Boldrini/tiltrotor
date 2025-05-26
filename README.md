@@ -64,6 +64,7 @@ cd casadi
 mkdir build && cd build
 cmake .. \
   -DWITH_QPOASES=ON \
+  -DWITH_LAPACK=ON \
   -DWITH_PYTHON=ON \
   -DWITH_STATIC_CASADI=OFF \
   -DWITH_EXAMPLES=ON \
