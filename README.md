@@ -4,7 +4,10 @@ This package consists of a tilt-rotor UAV simulation in the ROS Gazebo environme
 Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contain Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advance fashion.
 # Guide for Ros/Gazebo simulation
 ## Setup of the environment
-Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html).
+Install ROS 1, PX4 and MAVROS following the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html). After downloading the PX4 firmware, build the package with the command:
+```plaintext
+make px4_sitl gazebo-classic
+```
 
 Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
