@@ -62,7 +62,13 @@ and `CasADi`:
 git clone https://github.com/casadi/casadi.git
 cd casadi
 mkdir build && cd build
-cmake .. -DENABLE_QPOASES=ON -DQP_OASES_ROOT_DIR=/usr/local
+cmake .. \
+  -DWITH_QPOASES=ON \
+  -DWITH_PYTHON=ON \
+  -DWITH_STATIC_CASADI=OFF \
+  -DWITH_EXAMPLES=ON \
+  -DPYTHON_EXECUTABLE=$(which python3) \
+  -DCMAKE_BUILD_TYPE=Release
 make -j$(nproc)
 sudo make install
 ```
