@@ -10,12 +10,12 @@ Download the `models` folder and copy its components into Gazebo's model directo
 
 Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-Download the `10020_gazebo_classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line
+Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line
 ```plaintext
 10020_gazebo-classic_iris_tiltrotor
 ```
 
-Modify launch files `px4.launch` `mavros_posix_sitl.launch` in directory ```launch```, changing vehicle name from `iris` to `iris_tiltrotor`.
+Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory ```launch```, changing vehicle name from `iris` to `iris_tiltrotor`.
 
 Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
 
