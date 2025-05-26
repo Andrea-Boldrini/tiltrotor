@@ -10,7 +10,7 @@ Download the `models` folder and copy its components into Gazebo's model directo
 
 Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line
+Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line:
 ```plaintext
 10020_gazebo-classic_iris_tiltrotor
 ```
