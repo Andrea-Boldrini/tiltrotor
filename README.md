@@ -22,23 +22,26 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/.../PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic
    export GAZEBO_PLUGIN_PATH=$GAZEBO_PLUGIN_PATH:/usr/lib/x86_64-linux-gnu/gazebo-9/plugins
    ```
-   and build the package with the command:
+   replacing `...` with your directory path.
+
+   Finally, open a new terminal and build the package with the command:
    ```plaintext
+   cd PX4-Autopilot
    make px4_sitl gazebo-classic
    ```
 
-2. Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
+3. Download the `models` folder and copy its components into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
-3. Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
+4. Download the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-4. Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line:
+5. Download the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line:
    ```plaintext
    10020_gazebo-classic_iris_tiltrotor
    ```
 
-5. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
+6. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 
-6. Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
+7. Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
 
    ```plaintext
    <physics name='default_physics' default='0' type='ode'>
@@ -61,14 +64,14 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
          <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
    </physics>
    ```
-7. Install QGroundControl and, when running simulation, launch it and set the following parameters: 
+8. Install QGroundControl and, when running simulation, launch it and set the following parameters: 
    ```plaintext
    EKF2_EV_CTRL = 15
    EKF2_HGT_REF = VISION
    ```
-8. Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_LMPC` or `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+9. Download the `tiltrotor_drone_PID` or `tiltrotor_drone_LQR` or `tiltrotor_drone_LMPC` or `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
 
-9. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. 
+10. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. 
 Moreover, it is required to download the open-source tools for nonlinear optimization `qpOASES` 
    ```
    git clone https://github.com/coin-or/qpOASES.git
