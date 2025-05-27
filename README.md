@@ -8,7 +8,11 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    - PX4;
    - ROS 1;
    - MAVROS.
-   When installing MAVROS, follow the instructions of the source installation steps, but note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line.
+   When installing MAVROS, follow the instructions of the source installation steps, instead of the binary ones. Moreover, it is required to install catkin tools:
+   ```plaintext
+   sudo apt-get install python3-catkin-tools
+   ```
+   Then, note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line.
 
    After installing everything, update the `.bashrc` file:
    ```plaintext
