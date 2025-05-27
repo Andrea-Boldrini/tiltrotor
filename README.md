@@ -1,19 +1,16 @@
 # Simulation of a Tilt-Rotor UAV
 This package consists of a tilt-rotor UAV simulation in the ROS Gazebo environment, integrated with the PX4 controller. It is developed in Ubuntu 20.04, ROS Noetic and Gazebo 11.
 
-Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contain Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advance fashion.
+Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loops_Simscape` contain Matlab/Simulink files which allow to run simulations in the relative environment in a simpler, but less advanced fashion.
 # Guide for Ros/Gazebo simulation
 ## Setup of the environment
-1. Follow the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html) to install:
-   - PX4;
-   - ROS 1;
-   - MAVROS.
-   
-   When installing MAVROS, follow the instructions of the source installation steps, instead of the binary ones. Moreover, it is required to install catkin_tools:
-   ```plaintext
-   sudo apt-get install python3-catkin-tools
-   ```
-   Then, note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line, and the `released/stable` version of MAVROS has to be preferred to the `latest source`.
+1. Follow the [ROS 1 with MAVROS Installation Guide](https://docs.px4.io/main/en/ros/mavros_installation.html) to install three main software, PX4, ROS 1 and MAVROS, with the recommended modifications below:
+   - for PX4: while running `ubuntu.sh`, remove `--no-sim-tools --no-nuttx` options from the suggested command line in the original website;
+   - for MAVROS: when installing MAVROS, follow the instructions of the source installation steps, instead of the binary ones. Moreover, it is required to install catkin_tools:
+     ```plaintext
+      sudo apt-get install python3-catkin-tools
+      ```
+      Then, note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line, and the `released/stable` version of MAVROS has to be preferred to the `latest source`.
 
    After installing everything, update the `.bashrc` file:
    ```plaintext
