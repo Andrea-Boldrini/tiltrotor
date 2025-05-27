@@ -22,28 +22,22 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    ```
    replacing `...` with your directory path.
 
-   Finally, open a new terminal and build the package with the command:
-   ```plaintext
-   cd PX4-Autopilot
-   make px4_sitl gazebo-classic
-   ```
-
 3. Download this repository in your computer:
    ```plaintext
    git clone https://github.com/Andrea-Boldrini/tiltrotor.git
    ```
-5. Copy the contents of `models` folder into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
+5. Copy the contents of `models` folder into Gazebo's model directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
 6. Copy the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-7. Copy the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file in the same directory adding the line:
+7. Copy the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file `CMakeLists.txt` in the same directory adding the line:
    ```plaintext
    10020_gazebo-classic_iris_tiltrotor
    ```
 
 8. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 
-9. Ensure the `empty.world` in directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
+9. Ensure the `empty.world` in directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
 
    ```plaintext
    <physics name='default_physics' default='0' type='ode'>
@@ -65,6 +59,11 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
          </ode>
          <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
    </physics>
+   ```
+11. Open a new terminal and build the package with the command:
+   ```plaintext
+   cd PX4-Autopilot
+   make px4_sitl gazebo-classic
    ```
 10. Install QGroundControl and, when running simulation, launch it and set the following parameters: 
    ```plaintext
