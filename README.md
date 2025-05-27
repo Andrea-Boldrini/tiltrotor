@@ -34,10 +34,7 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    ```plaintext
    10020_gazebo-classic_iris_tiltrotor
    ```
-
-8. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
-
-9. Ensure the `empty.world` in directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file includes the following physics parameters:
+8. Modify the `<physics>` section of the `empty.world` in directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file as below:
 
    ```plaintext
    <physics name='default_physics' default='0' type='ode'>
@@ -60,49 +57,51 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
          <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
    </physics>
    ```
-11. Open a new terminal and build the package with the command:
+9. Open a new terminal and build the package with the command:
    ```plaintext
    cd PX4-Autopilot
-   make px4_sitl gazebo-classic
+   DONT_RUN=1 make px4_sitl gazebo-classic
    ```
-10. Install QGroundControl and, when running simulation, launch it and set the following parameters: 
-   ```plaintext
-   EKF2_EV_CTRL = 15
-   EKF2_HGT_REF = VISION
-   ```
-11. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+10. Launch the simulation with the command in the terminal `roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor`
+11. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). Then, when running simulation, launch it and set the following parameters: 
+    ```plaintext
+    EKF2_EV_CTRL = 15
+    EKF2_HGT_REF = VISION
+    ```
+12. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
 
-12. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. 
+13. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. 
 Moreover, it is required to download the open-source tools for nonlinear optimization `qpOASES` 
-   ```
-   git clone https://github.com/coin-or/qpOASES.git
-   cd qpOASES
-   mkdir build && cd build
-   cmake ..
-   make -j$(nproc)
-   sudo make install
-   ```
-   and `CasADi`:
-   ```
-   git clone https://github.com/casadi/casadi.git
-   cd casadi
-   mkdir build && cd build
-   cmake .. \
-     -DWITH_QPOASES=ON \
-     -DWITH_LAPACK=ON \
-     -DWITH_PYTHON=ON \
-     -DWITH_STATIC_CASADI=OFF \
-     -DWITH_EXAMPLES=ON \
-     -DPYTHON_EXECUTABLE=$(which python3) \
-     -DCMAKE_BUILD_TYPE=Release
-   make -j$(nproc)
-   sudo make install
-   ```
-   Finally, update the `.bashrc` file exporting the relative libraries:
-   ```
-   export LD_LIBRARY_PATH=~/.../casadi/build/lib:~/.../qpoases/build/libs:$LD_LIBRARY_PATH
-   ```
+    ```
+    git clone https://github.com/coin-or/qpOASES.git
+    cd qpOASES
+    mkdir build && cd build
+    cmake ..
+    make -j$(nproc)
+    sudo make install
+    ```
+    and `CasADi`:
+    ```
+    git clone https://github.com/casadi/casadi.git
+    cd casadi
+    mkdir build && cd build
+    cmake .. \
+      -DWITH_QPOASES=ON \
+      -DWITH_LAPACK=ON \
+      -DWITH_PYTHON=ON \
+      -DWITH_STATIC_CASADI=OFF \
+      -DWITH_EXAMPLES=ON \
+      -DPYTHON_EXECUTABLE=$(which python3) \
+      -DCMAKE_BUILD_TYPE=Release
+    make -j$(nproc)
+    sudo make install
+    ```
+    Finally, update the `.bashrc` file exporting the relative libraries:
+    ```
+    export LD_LIBRARY_PATH=~/.../casadi/build/lib:~/.../qpoases/build/libs:$LD_LIBRARY_PATH
+    ```
 ## Start of the simulation
+8. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 Build the environment:
 ```
 cd catkin_ws
