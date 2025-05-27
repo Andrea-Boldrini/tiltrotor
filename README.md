@@ -13,7 +13,7 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    ```plaintext
    sudo apt-get install python3-catkin-tools
    ```
-   Then, note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line.
+   Then, note that `noetic mavlink` should be downloaded instead of `kinetic mavlink`, replacing `kinetic` with `noetic` in the relative installation line, and the `released/stable` version of MAVROS has to be preferred to the `latest source`.
 
    After installing everything, update the `.bashrc` file:
    ```plaintext
