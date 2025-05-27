@@ -30,7 +30,7 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
 
 3. Download this repository in your computer:
    ```plaintext
-   https://github.com/Andrea-Boldrini/tiltrotor.git
+   git clone https://github.com/Andrea-Boldrini/tiltrotor.git
    ```
 5. Copy the contents of `models` folder into Gazebo's model directory `/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
