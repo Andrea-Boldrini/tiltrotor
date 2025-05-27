@@ -162,6 +162,7 @@ void FlightController::initParams()
     ros::param::get(ros::this_node::getName() + "/kp_vy", _kp.vy);
     ros::param::get(ros::this_node::getName() + "/ki_vy", _ki.vy);
     ros::param::get(ros::this_node::getName() + "/kd_vy", _kd.vy);
+    ros::param::get(ros::this_node::getName() + "/lim_ux", _lim_u.x);
     ros::param::get(ros::this_node::getName() + "/lim_uy", _lim_u.y);
     ros::param::get(ros::this_node::getName() + "/lim_uz", _lim_u.z);
     ros::param::get(ros::this_node::getName() + "/kp_tau", _kp.tau);
