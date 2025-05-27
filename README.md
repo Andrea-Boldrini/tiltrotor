@@ -62,7 +62,10 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    cd PX4-Autopilot
    DONT_RUN=1 make px4_sitl gazebo-classic
    ```
-10. Launch the simulation with the command in the terminal `roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor`
+10. Launch the simulation:
+    ```plaintext
+    roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
+    ```
 11. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). Then, when running simulation, launch it and set the following parameters: 
     ```plaintext
     EKF2_EV_CTRL = 15
