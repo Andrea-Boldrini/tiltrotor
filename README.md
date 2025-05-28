@@ -61,15 +61,11 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    cd PX4-Autopilot
    DONT_RUN=1 make px4_sitl gazebo-classic
    ```
-8. Launch the simulation:
-    ```plaintext
-    roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
-    ```
-9. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+8. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
    
-10. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
+9. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
    
-11. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
+10. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
     ```
     git clone https://github.com/coin-or/qpOASES.git
     cd qpOASES
@@ -106,12 +102,10 @@ catkin build
 ```
 Open three terminals. Use the first one to launch PX4, ROS and Gazebo:
 ```
-cd PX4-Autopilot
-roslaunch launch/mavros_posix_sitl.launch
+roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
 ```
 the second one to launch the flight code to control the UAV:
 ```
-cd catkin_ws
 roslaunch tiltrotor_drone flight_controller.launch
 ```
 and the last one to dynamically modify the setpoints of the UAV:
