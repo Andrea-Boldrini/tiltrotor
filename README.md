@@ -93,7 +93,7 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     ```
     Finally, update the `.bashrc` file exporting the relative libraries:
     ```
-    export LD_LIBRARY_PATH=~/.../casadi/build/lib:~/.../qpoases/build/libs:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=~/.../casadi/build/lib:~/.../qpOASES/build/libs:$LD_LIBRARY_PATH
     ```
 ## Start of the simulation
 Build the environment:
