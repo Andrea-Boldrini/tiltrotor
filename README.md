@@ -65,13 +65,11 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     ```plaintext
     roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
     ```
-9. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html).
-
-10. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+9. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
    
-11. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
+10. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
    
-12. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
+11. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
     ```
     git clone https://github.com/coin-or/qpOASES.git
     cd qpOASES
@@ -101,7 +99,6 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     export LD_LIBRARY_PATH=~/.../casadi/build/lib:~/.../qpoases/build/libs:$LD_LIBRARY_PATH
     ```
 ## Start of the simulation
-8. Modify launch files `px4.launch` `mavros_posix_sitl.launch` `posix_sitl.launch` in directory `/launch`, changing vehicle name from `iris` to `iris_tiltrotor`.
 Build the environment:
 ```
 cd catkin_ws
