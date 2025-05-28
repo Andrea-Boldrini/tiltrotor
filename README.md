@@ -72,9 +72,8 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     EKF2_HGT_REF = VISION
     ```
 12. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
-
-13. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the relative repository, in order to apply external disturbances on the UAV. 
-Moreover, it is required to download the open-source tools for nonlinear optimization `qpOASES` 
+13. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository. 
+14.  When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
     ```
     git clone https://github.com/coin-or/qpOASES.git
     cd qpOASES
