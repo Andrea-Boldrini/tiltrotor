@@ -65,11 +65,8 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     ```plaintext
     roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
     ```
-9. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). Then, when running simulation, launch it and set the following parameters: 
-    ```plaintext
-    EKF2_EV_CTRL = 15
-    EKF2_HGT_REF = VISION
-    ```
+9. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html).
+
 10. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
    
 11. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
