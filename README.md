@@ -22,20 +22,19 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
    ```
    replacing `...` with your directory path.
 
-3. Download this repository in your computer:
+2. Download this repository in your computer:
    ```plaintext
    git clone https://github.com/Andrea-Boldrini/tiltrotor.git
    ```
-5. Copy the contents of `models` folder into Gazebo's model directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
+3. Copy the contents of `models` folder into Gazebo's model directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models`. 
 
-6. Copy the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
+4. Copy the `models_plugin` folder and locate it in the src folder located in the catkin_ws folder.
 
-7. Copy the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file `CMakeLists.txt` in the same directory adding the line:
+5. Copy the `10020_gazebo-classic_iris_tiltrotor` file and locate into directory `/PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/airframes`. Moreover, modify the cmake file `CMakeLists.txt` in the same directory adding the line:
    ```plaintext
    10020_gazebo-classic_iris_tiltrotor
    ```
-8. Modify the `<physics>` section of the `empty.world` in directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file as below:
-
+6. Modify the `<physics>` section of the `empty.world` in directory `/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/worlds` file as below:
    ```plaintext
    <physics name='default_physics' default='0' type='ode'>
          <gravity>0 0 -9.8066</gravity>
@@ -57,23 +56,25 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
          <magnetic_field>6.0e-6 2.3e-5 -4.2e-5</magnetic_field>
    </physics>
    ```
-9. Open a new terminal and build the package with the command:
+7. Open a new terminal and build the package with the command:
    ```plaintext
    cd PX4-Autopilot
    DONT_RUN=1 make px4_sitl gazebo-classic
    ```
-10. Launch the simulation:
+8. Launch the simulation:
     ```plaintext
     roslaunch px4 mavros_posix_sitl.launch vehicle:=iris_tiltrotor
     ```
-11. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). Then, when running simulation, launch it and set the following parameters: 
+9. Install QGroundControl following the instructions in the [official guide](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/getting_started/download_and_install.html). Then, when running simulation, launch it and set the following parameters: 
     ```plaintext
     EKF2_EV_CTRL = 15
     EKF2_HGT_REF = VISION
     ```
-12. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
-13. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository. 
-14.  When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
+10. Choose between `tiltrotor_drone_PID`, `tiltrotor_drone_LQR`, `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` folders, which are the controllers developed for the tilt-rotor UAV respectively using PID, PID+LQR, linear MPC and nonlinear MPC. Then rename the selected folder as `tiltrotor_drone` and locate it in the src folder located in the catkin_ws folder.
+   
+11. In order to apply external disturbances on the UAV, it is necessary to install the external wrench emulator `https://github.com/joshuataylor00/gazebo_wrench_emulator.git`, following the instructions in the related repository.
+   
+12. When using `tiltrotor_drone_LMPC` and `tiltrotor_drone_NLMPC` it is necessary to download the open-source tools for nonlinear optimization `qpOASES` 
     ```
     git clone https://github.com/coin-or/qpOASES.git
     cd qpOASES
