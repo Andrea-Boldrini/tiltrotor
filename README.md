@@ -79,13 +79,14 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     git clone https://github.com/casadi/casadi.git
     cd casadi
     mkdir build && cd build
-    cmake .. \
-      -DWITH_QPOASES=ON \
-      -DWITH_LAPACK=ON \
-      -DWITH_PYTHON=ON \
-      -DWITH_STATIC_CASADI=OFF \
-      -DWITH_EXAMPLES=ON \
-      -DPYTHON_EXECUTABLE=$(which python3) \
+    sudo apt install swig
+    cmake .. -
+      -DWITH_QPOASES=ON -
+      -DWITH_LAPACK=ON -
+      -DWITH_PYTHON=ON -
+      -DWITH_STATIC_CASADI=OFF -
+      -DWITH_EXAMPLES=ON -
+      -DPYTHON_EXECUTABLE=$(which python3) -
       -DCMAKE_BUILD_TYPE=Release
     make -j$(nproc)
     sudo make install
