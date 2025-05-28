@@ -112,6 +112,10 @@ and the last one to dynamically modify the setpoints of the UAV:
 ```
 rosrun rqt_reconfigure rqt_reconfigure
 ```
+When changing setpoint, note that:
+- position commands are expressed in vehicle frame, therefore x and y are in the plane parallel to the ground passing through the CoG of the UAV, with the x direction aligned with the yaw, while z is perpendicular to that plane in upward direction;
+- change of yaw modifies the desired x and y position in vehicle frame, so it necessary that yaw reaches desired setpoint before making any other maneuver.
+
 # Guide for Matlab/Simulink simulation
 `position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
