@@ -75,11 +75,15 @@ Moreover, the folders `position_attitude_loops_ODEs` and `position_attitude_loop
     sudo make install
     ```
     and `CasADi`:
+    `CasADi` requires the dependency `swig`, so install it:
+    ```
+    sudo apt install swig
+    ```
+    Then:
     ```
     git clone https://github.com/casadi/casadi.git
     cd casadi
     mkdir build && cd build
-    sudo apt install swig
     cmake .. -
       -DWITH_QPOASES=ON -
       -DWITH_LAPACK=ON -
