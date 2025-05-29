@@ -272,7 +272,7 @@ void FlightController::sendCurrentDronePose()
         _current.vy_local = -_current.vx * sin_yaw + _current.vy * cos_yaw; 
         
         std::array<std::array<double, 3>, 3> R_matrix_new = Inertial2BodyRotationMatrix(_current.roll_rad, _current.pitch_rad, 0);
-        std::array<std::array<double, 3>, 3> R_matrix_inv = transposeMatrix(R_matrix);
+        std::array<std::array<double, 3>, 3> R_matrix_inv = transposeMatrix(R_matrix_new);
         std::array<double, 3> position_gripper_body = {0.27, 0, -0.035};
         std::array<double, 3> position_uav_vehicle = {_current.x_local, _current.y_local, _current.z};
         std::array<double, 3> end_effector_position1 = multiplyMatrixVector(R_matrix_inv, position_gripper_body);
