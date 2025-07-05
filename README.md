@@ -121,8 +121,10 @@ When changing setpoint, note that:
 - position commands are expressed in vehicle frame, therefore x and y are in the plane parallel to the ground passing through the CoG of the UAV, with the x direction aligned with the yaw, while z is perpendicular to that plane in upward direction;
 - change of yaw modifies the desired x and y position in vehicle frame, so it necessary that yaw reaches desired setpoint before making any other maneuver.
 
+The repository contains also an extra folder called `tiltrotor_drone_interaction`, which is a modified version of `tiltrotor_drone_NLMPC` that includes in the cost function of the NLMPC problem a term that penalizes the variation in the position of the gripper. This version, which requires substantial updates to become fully operative, is meant to be used when attitude change needs to be performed, while grasping a target vertical cylindrical object.
+
 # Guide for Matlab/Simulink simulation
-`position_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
+Cposition_attitude_loops_ODEs` simulates the UAV directly integrating the ODEs that describe the system, while `position_attitude_loops_Simscape` exploits a Simscape model of the tilt-rotor UAV to run the simulations.
 
 It is possible to choose between different Simulink modellings:
 - `model_3` (PID), where all directions are controlled with PID;
