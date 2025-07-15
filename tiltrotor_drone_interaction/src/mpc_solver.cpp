@@ -143,7 +143,7 @@ void MPCSolver::buildSolver() {
             SX p_uav_vehicle = SX::vertcat({X(0), X(2), X(4)});
             SX R_i = rotationMatrixFromEuler(X(6), X(8), 0);
             SX p_gripper_vehicle = p_uav_vehicle + SX::mtimes(R_i, p_gripper_body);
-            err_grasp = p_gripper_vehicle - p_tree;
+            err_grasp = -p_gripper_vehicle + p_tree;
             cost += SX::mtimes(SX::mtimes(err.T(), Q_cost), err) + SX::mtimes(SX::mtimes(u.T(), R_cost), u) + SX::mtimes(SX::mtimes(err_grasp.T(), W_cost), err_grasp);
         } else {
             cost += SX::mtimes(SX::mtimes(err.T(), Q_cost), err) + SX::mtimes(SX::mtimes(u.T(), R_cost), u);
